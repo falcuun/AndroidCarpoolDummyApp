@@ -1,6 +1,8 @@
 package com.example.carpooldummyapp;
 
-public class Voznja {
+import java.io.Serializable;
+
+public class Voznja implements Serializable {
     private String Polazno_Mesto;
     private String Dolazno_Mesto;
     private String Vreme_Polaska;
@@ -47,7 +49,7 @@ public class Voznja {
 
     @Override
     public String toString(){
-        return "Polazno Mesto je: " + Polazno_Mesto + " Dolazno Mesto je: " + Dolazno_Mesto
-                + " Vreme Polaska je: " + Vreme_Polaska + " Ocekivano Vreme Dolaska je: " + Vreme_Dolaska;
+        return "Polazno Mesto je: " + Polazno_Mesto + '\n' + "Dolazno Mesto je: " + Dolazno_Mesto + '\n'
+                + "Vreme Polaska je: " + Vreme_Polaska + '\n' + "Ocekivano Vreme Dolaska je: " + Vreme_Dolaska + '\n';
     }
 }

@@ -1,9 +1,11 @@
 package com.example.carpooldummyapp;
 
+import java.io.Serializable;
+
 enum TIP_NALOGA {VOZAC, PUTNIK}
 
 
-public class Account {
+public class Account implements Serializable {
     private String Ime;
     private String Prezime;
     private String Telefon;
@@ -14,6 +16,8 @@ public class Account {
         Prezime = prezime;
         Telefon = telefon;
     }
+
+    public Account(){}
 
     public String getIme() {
         return Ime;
