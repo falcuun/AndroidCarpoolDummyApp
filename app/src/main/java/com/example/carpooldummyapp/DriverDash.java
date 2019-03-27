@@ -25,26 +25,67 @@ public class DriverDash extends AppCompatActivity {
         setContentView(R.layout.activity_driver_dash);
         Init();
 
-        Intent i = getIntent();
-        String Acc_Name = i.getStringExtra("Nalog");
-        for (Account acc : Start.Nalozi) {
-            if (acc.getIme().equalsIgnoreCase(Acc_Name)) {
-                vozac = (DriverAccount)acc;
-            }
-        }
-        Napravi_Novu_Voznju();
-        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, vozac.getTrenutne_Voznje());
-
-        Lista_Voznje.setAdapter(arrayAdapter);
     }
 
     private void Init() {
+        setContentView(R.layout.activity_driver_dash);
         Mesto_Polaska = findViewById(R.id.Novi_Polazak);
         Mesto_Dolaska = findViewById(R.id.Novi_Dolazak);
         Vreme_Polaska = findViewById(R.id.Vreme_Polaska);
         Vreme_Dolaska = findViewById(R.id.Vreme_Dolaska);
         Nova_Voznja = findViewById(R.id.Nova_Voznja);
         Lista_Voznje = findViewById(R.id.driverDrivesList);
+        Napravi_Novu_Voznju();
+        Izmeni_Voznju();
+        Intent i = getIntent();
+        String Acc_Name = i.getStringExtra("Nalog");
+        for (Account acc : Start.Nalozi) {
+            if (acc.getIme().equalsIgnoreCase(Acc_Name)) {
+                vozac = (DriverAccount) acc;
+            }
+        }
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, vozac.getTrenutne_Voznje());
+        Lista_Voznje.setAdapter(arrayAdapter);
+        Lista_Voznje.smoothScrollToPosition(arrayAdapter.getCount());
+    }
+
+    private void Izmeni_Voznju() {
+        Lista_Voznje.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                setContentView(R.layout.modify_ride);
+                Modify_Init(position);
+                return true;
+            }
+        });
+    }
+
+    private void Modify_Init(final int position) {
+        final EditText Modified_Mesto_Polaska = findViewById(R.id.Modified_Mesto_Polaska);
+        final EditText Modified_Mesto_Dolaska = findViewById(R.id.Modified_Mesto_Dolaska);
+        final EditText Modified_Vreme_Polaska = findViewById(R.id.Modified_Vreme_Polaska);
+        final EditText Modified_Vreme_Dolaska = findViewById(R.id.Modified_Vreme_Dolaska);
+        final Button Modify_Button = findViewById(R.id.Modify_Button);
+        final Button Delete_Button = findViewById(R.id.Delete_Ride_Button);
+
+        Modify_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vozac.getTrenutne_Voznje().get(position).setPolazno_Mesto(Modified_Mesto_Polaska.getText().toString());
+                vozac.getTrenutne_Voznje().get(position).setDolazno_Mesto(Modified_Mesto_Dolaska.getText().toString());
+                vozac.getTrenutne_Voznje().get(position).setVreme_Polaska(Modified_Vreme_Polaska.getText().toString());
+                vozac.getTrenutne_Voznje().get(position).setVreme_Dolaska(Modified_Vreme_Dolaska.getText().toString());
+                Init();
+            }
+        });
+
+        Delete_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vozac.getTrenutne_Voznje().remove(position);
+                Init();
+            }
+        });
     }
 
     private void Napravi_Novu_Voznju() {

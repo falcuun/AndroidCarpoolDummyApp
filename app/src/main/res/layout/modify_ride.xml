@@ -5,18 +5,23 @@
               android:orientation="vertical">
 
     <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
-              android:id="@+id/Modified_Mesto_Polaska"
+              android:id="@+id/Modified_Mesto_Polaska" android:ems="10"
               android:hint="Mesto Polaska"/>
     <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
-              android:id="@+id/Modified_Mesto_Dolaska"
+              android:id="@+id/Modified_Mesto_Dolaska" android:ems="10"
               android:hint="Mesto Dolaska"/>
     <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
-              android:id="@+id/Modified_Vreme_Polaska"
+              android:id="@+id/Modified_Vreme_Polaska" android:ems="10"
               android:hint="Vreme Polaska"/>
     <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
-              android:id="@+id/Modified_Vreme_Dolaska"
+              android:id="@+id/Modified_Vreme_Dolaska" android:ems="10"
               android:hint="Vreme Dolaska"/>
     <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:text="Modify" android:layout_gravity="center"/>
+            android:id="@+id/Modify_Button"
+            android:text="Modify" android:layout_gravity="center"/>
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Delete"
+            android:id="@+id/Delete_Ride_Button"
+            android:layout_gravity="end"/>
 
 </LinearLayout>
