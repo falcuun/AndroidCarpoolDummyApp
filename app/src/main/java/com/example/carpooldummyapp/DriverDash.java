@@ -57,6 +57,7 @@ public class DriverDash extends AppCompatActivity {
                 String vd = Vreme_Dolaska.getText().toString();
                 vozac.Add_Voznja(new Voznja(mp, md, vp, vd));
                 arrayAdapter.notifyDataSetChanged();
+                Lista_Voznje.smoothScrollToPosition(arrayAdapter.getCount());
             }
         });
     }

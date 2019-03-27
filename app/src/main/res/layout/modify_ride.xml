@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:id="@+id/Modified_Mesto_Polaska"
+              android:hint="Mesto Polaska"/>
+    <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:id="@+id/Modified_Mesto_Dolaska"
+              android:hint="Mesto Dolaska"/>
+    <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:id="@+id/Modified_Vreme_Polaska"
+              android:hint="Vreme Polaska"/>
+    <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:id="@+id/Modified_Vreme_Dolaska"
+              android:hint="Vreme Dolaska"/>
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:text="Modify" android:layout_gravity="center"/>
+
+</LinearLayout>
