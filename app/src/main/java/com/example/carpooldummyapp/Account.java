@@ -10,11 +10,22 @@ public class Account implements Serializable {
     private String Prezime;
     private String Telefon;
     private String Email;
+    TIP_NALOGA tip_naloga;
 
-    public Account(String ime, String prezime, String telefon, String Email) {
+    public Account(String ime, String prezime, String telefon, String email, TIP_NALOGA tip_naloga) {
         Ime = ime;
         Prezime = prezime;
         Telefon = telefon;
+        Email = email;
+        this.tip_naloga = tip_naloga;
+    }
+
+    public TIP_NALOGA getTip_naloga() {
+        return tip_naloga;
+    }
+
+    public void setTip_naloga(TIP_NALOGA tip_naloga) {
+        this.tip_naloga = tip_naloga;
     }
 
     public Account(){}

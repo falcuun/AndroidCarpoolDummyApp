@@ -18,8 +18,8 @@ public class DriverAccount extends Account {
     private TIP_NALOGA tip = TIP_NALOGA.VOZAC;
     private int Reputacija = 0;
 
-    public DriverAccount(String ime, String prezime, String telefon, String Email, String model_Vozila) {
-        super(ime, prezime, telefon, Email);
+    public DriverAccount(String ime, String prezime, String telefon, String Email, String model_Vozila, TIP_NALOGA tip_naloga) {
+        super(ime, prezime, telefon, Email, tip_naloga);
         this.Model_Vozila = model_Vozila;
     }
 

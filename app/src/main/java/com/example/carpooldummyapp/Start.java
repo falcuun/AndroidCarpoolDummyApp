@@ -15,13 +15,14 @@ public class Start extends AppCompatActivity {
     static ArrayList<Account> Nalozi = new ArrayList<>();
     Spinner spinner;
     String Acc_Name;
+    TIP_NALOGA tip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Account driver1 = new DriverAccount("Vozac1", "Vozi1", "1", "vozac@1", "BMW");
-        Account driver2 = new DriverAccount("Vozac2", "Vozi2", "2", "vozac@2", "BMW");
-        Account passenger1 = new PassengerAccount("Putnik1", "Putuje1", "2", "putnik@1");
+        Account driver1 = new DriverAccount("Vozac1", "Vozi1", "1", "vozac@1", "BMW", TIP_NALOGA.VOZAC);
+        Account driver2 = new DriverAccount("Vozac2", "Vozi2", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC);
+        Account passenger1 = new PassengerAccount("Putnik1", "Putuje1", "2", "putnik@1", TIP_NALOGA.PUTNIK);
 
         ((DriverAccount) driver1).Add_Voznja(new Voznja("Beograd", "Novi Sad", "Danas", "Sutra"));
         ((DriverAccount) driver2).Add_Voznja(new Voznja("Paracin", "Nis", "Ponedeljak", "Utorak"));
@@ -37,15 +38,21 @@ public class Start extends AppCompatActivity {
         for (Account acc : list) {
             if (acc.getIme().equalsIgnoreCase(Ime_Query)) {
                 Acc_Name = acc.getIme();
+                tip = acc.getTip_naloga();
                 return true;
             }
         }
         return false;
     }
 
-    private void Driver_Dash(){
+    private void Driver_Dash() {
         Intent intent = new Intent(this, DriverDash.class);
         intent.putExtra("Nalog", Acc_Name);
+        startActivity(intent);
+    }
+
+    private void Passenger_Dash() {
+        Intent intent = new Intent(this, PassengerDash.class);
         startActivity(intent);
     }
 
@@ -60,7 +67,11 @@ public class Start extends AppCompatActivity {
             public void onClick(View v) {
                 if (User_Exists(Nalozi, Input_Ime.getText().toString())) {
                     Toast.makeText(Start.this, "Account Exists", Toast.LENGTH_LONG).show();
-                    Driver_Dash();
+                    if (tip == TIP_NALOGA.PUTNIK) {
+                        Passenger_Dash();
+                    } else {
+                        Driver_Dash();
+                    }
                 } else {
                     Toast.makeText(Start.this, "Account Doesn't Exist", Toast.LENGTH_LONG).show();
                     Create_New_User();
@@ -106,11 +117,11 @@ public class Start extends AppCompatActivity {
     }
 
     private void Register_New_Passenger(String ime, String prezime, String email, String telefon) {
-        Nalozi.add(new PassengerAccount(ime, prezime, telefon, email));
+        Nalozi.add(new PassengerAccount(ime, prezime, telefon, email, TIP_NALOGA.PUTNIK));
     }
 
     private void Register_New_Driver(String ime, String prezime, String email, String telefon, String model) {
-        Nalozi.add(new DriverAccount(ime, prezime, telefon, email, model));
+        Nalozi.add(new DriverAccount(ime, prezime, telefon, email, model, TIP_NALOGA.VOZAC));
     }
 
     String Car_model;
