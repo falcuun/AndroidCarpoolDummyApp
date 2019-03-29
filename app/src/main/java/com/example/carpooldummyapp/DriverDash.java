@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
-import java.util.ArrayList;
 
 public class DriverDash extends AppCompatActivity {
 
