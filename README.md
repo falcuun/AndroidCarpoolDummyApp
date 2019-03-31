@@ -1,3 +1,3 @@
 # AndroidCarpoolDummyApp
 
-HCI Class android app
+Creating Android App for carpooling for Human-Computer Interaction class. 
