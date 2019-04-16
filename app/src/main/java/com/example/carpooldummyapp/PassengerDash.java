@@ -25,7 +25,11 @@ public class PassengerDash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger_dash);
 
+<<<<<<< HEAD
 
+=======
+        final ArrayList<Voznja> Sve_Voznje = new ArrayList<>();
+>>>>>>> b2e730c7c068e3f05241f9d1266c9c6ee7f57048
         Search_Bar = findViewById(R.id.Search_Name_Bar);
         Sve_Voznje_View = findViewById(R.id.Sve_Voznje);
 
@@ -40,6 +44,17 @@ public class PassengerDash extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Sve_Voznje);
         Sve_Voznje_View.setAdapter(adapter);
         Sve_Voznje_View.smoothScrollToPosition(adapter.getCount());
+
+        Sve_Voznje_View.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(PassengerDash.this, BookingRide.class);
+                intent.putExtra("Polazno Mesto", Sve_Voznje.get(position).getPolazno_Mesto());
+                intent.putExtra("Dolazno Mesto", Sve_Voznje.get(position).getDolazno_Mesto());
+                intent.putExtra("Polazno Vreme", Sve_Voznje.get(position).getVreme_Polaska());
+                intent.putExtra("Dolazno Vreme", Sve_Voznje.get(position).getVreme_Dolaska());
+            }
+        });
 
         Search_Bar.addTextChangedListener(new TextWatcher() {
             @Override
