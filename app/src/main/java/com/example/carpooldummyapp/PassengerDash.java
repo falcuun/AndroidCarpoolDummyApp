@@ -1,5 +1,6 @@
 package com.example.carpooldummyapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,14 +18,14 @@ public class PassengerDash extends AppCompatActivity {
     private EditText Search_Bar;
     private ListView Sve_Voznje_View;
     private ArrayAdapter<Voznja> adapter;
-
+    public static ArrayList<Voznja> Sve_Voznje = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger_dash);
 
-        ArrayList<Voznja> Sve_Voznje = new ArrayList<>();
+
         Search_Bar = findViewById(R.id.Search_Name_Bar);
         Sve_Voznje_View = findViewById(R.id.Sve_Voznje);
 
@@ -60,7 +61,9 @@ public class PassengerDash extends AppCompatActivity {
         Sve_Voznje_View.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Intent intent = new Intent(PassengerDash.this, BookingRide.class);
+                intent.putExtra("position", ((Voznja)parent.getAdapter().getItem(position)).get_ID());
+                startActivity(intent);
             }
         });
 

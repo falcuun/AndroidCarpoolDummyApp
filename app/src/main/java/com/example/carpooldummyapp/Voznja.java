@@ -3,16 +3,28 @@ package com.example.carpooldummyapp;
 import java.io.Serializable;
 
 public class Voznja implements Serializable {
+    private int _ID;
+
+    public int get_ID() {
+        return _ID;
+    }
+
+    public void set_ID(int _ID) {
+        this._ID = _ID;
+    }
+
     private String Polazno_Mesto;
     private String Dolazno_Mesto;
     private String Vreme_Polaska;
     private String Vreme_Dolaska;
 
-    public Voznja(String polazno_Mesto, String dolazno_Mesto, String vreme_Polaska, String vreme_Dolaska) {
+    public Voznja(String polazno_Mesto, String dolazno_Mesto, String vreme_Polaska, String vreme_Dolaska, int ID) {
+        this._ID = ID;
         Polazno_Mesto = polazno_Mesto;
         Dolazno_Mesto = dolazno_Mesto;
         Vreme_Polaska = vreme_Polaska;
         Vreme_Dolaska = vreme_Dolaska;
+        Start.ID++;
     }
 
     public String getVreme_Polaska() {

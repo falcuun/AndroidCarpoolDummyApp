@@ -86,7 +86,6 @@ public class DriverDash extends AppCompatActivity {
             }
         });
     }
-
     private void Napravi_Novu_Voznju() {
         Nova_Voznja.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,9 +94,10 @@ public class DriverDash extends AppCompatActivity {
                 String md = Mesto_Dolaska.getText().toString();
                 String vp = Vreme_Polaska.getText().toString();
                 String vd = Vreme_Dolaska.getText().toString();
-                vozac.Add_Voznja(new Voznja(mp, md, vp, vd));
+                vozac.Add_Voznja(new Voznja(mp, md, vp, vd, Start.ID));
                 arrayAdapter.notifyDataSetChanged();
                 Lista_Voznje.smoothScrollToPosition(arrayAdapter.getCount());
+                Start.ID++;
             }
         });
     }

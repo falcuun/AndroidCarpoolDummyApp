@@ -16,19 +16,37 @@ public class Start extends AppCompatActivity {
     Spinner spinner;
     String Acc_Name;
     TIP_NALOGA tip;
+    public static int ID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Account driver1 = new DriverAccount("Vozac1", "Vozi1", "1", "vozac@1", "BMW", TIP_NALOGA.VOZAC);
-        Account driver2 = new DriverAccount("Vozac2", "Vozi2", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC);
+        DriverAccount driver1 = new DriverAccount("Vozac1", "Vozi1", "1", "vozac@1", "BMW", TIP_NALOGA.VOZAC);
+        DriverAccount driver2 = new DriverAccount("Vozac2", "Vozi2", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC);
+        DriverAccount driver3 = new DriverAccount("Vozac3", "Vozi3", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC);
+        DriverAccount driver4 = new DriverAccount("Vozac4", "Vozi4", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC);
+        DriverAccount driver5 = new DriverAccount("Vozac5", "Vozi5", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC);
+        DriverAccount driver6 = new DriverAccount("Vozac6", "Vozi6", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC);
+        DriverAccount driver7 = new DriverAccount("Vozac7", "Vozi7", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC);
+
         Account passenger1 = new PassengerAccount("Putnik1", "Putuje1", "2", "putnik@1", TIP_NALOGA.PUTNIK);
 
-        ((DriverAccount) driver1).Add_Voznja(new Voznja("Beograd", "Novi Sad", "Danas", "Sutra"));
-        ((DriverAccount) driver2).Add_Voznja(new Voznja("Paracin", "Nis", "Ponedeljak", "Utorak"));
+        driver1.Add_Voznja(new Voznja("Beograd", "Novi Sad", "Danas", "Sutra", ID));
+        driver2.Add_Voznja(new Voznja("Paracin", "Nis", "Ponedeljak", "Utorak", ID));
+        driver3.Add_Voznja(new Voznja("Cuprija", "Jagodina", "Subota", "Nedelja", ID));
+        driver4.Add_Voznja(new Voznja("Kraljevo", "Kragujevac", "Danas", "Nakosutra", ID));
+        driver5.Add_Voznja(new Voznja("Krusevac", "Presevo", "15:00", "20:00", ID));
+        driver6.Add_Voznja(new Voznja("Subotica", "Budapest", "08:00", "20:00", ID));
+        driver7.Add_Voznja(new Voznja("Kuca", "Poso", "Danas", "Kasnije Danas", ID));
+
 
         Nalozi.add(driver1);
         Nalozi.add(driver2);
+        Nalozi.add(driver3);
+        Nalozi.add(driver4);
+        Nalozi.add(driver5);
+        Nalozi.add(driver6);
+        Nalozi.add(driver7);
         Nalozi.add(passenger1);
         Toast.makeText(this, String.valueOf(Nalozi.size()), Toast.LENGTH_LONG).show();
         Log_In();
