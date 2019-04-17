@@ -31,13 +31,13 @@ public class Start extends AppCompatActivity {
 
         Account passenger1 = new PassengerAccount("Putnik1", "Putuje1", "2", "putnik@1", TIP_NALOGA.PUTNIK);
 
-        driver1.Add_Voznja(new Voznja("Beograd", "Novi Sad", "Danas", "Sutra", ID));
-        driver2.Add_Voznja(new Voznja("Paracin", "Nis", "Ponedeljak", "Utorak", ID));
-        driver3.Add_Voznja(new Voznja("Cuprija", "Jagodina", "Subota", "Nedelja", ID));
-        driver4.Add_Voznja(new Voznja("Kraljevo", "Kragujevac", "Danas", "Nakosutra", ID));
-        driver5.Add_Voznja(new Voznja("Krusevac", "Presevo", "15:00", "20:00", ID));
-        driver6.Add_Voznja(new Voznja("Subotica", "Budapest", "08:00", "20:00", ID));
-        driver7.Add_Voznja(new Voznja("Kuca", "Poso", "Danas", "Kasnije Danas", ID));
+        driver1.Add_Voznja(new Voznja(ID,"Belgrade", "Novi Sad", "Danas", "Sutra", 2));
+        driver2.Add_Voznja(new Voznja(ID,"Paracin", "Nis", "Ponedeljak", "Utorak",3));
+        driver3.Add_Voznja(new Voznja(ID,"Cuprija", "Jagodina", "Subota", "Nedelja", 1));
+        driver4.Add_Voznja(new Voznja(ID,"Kraljevo", "Kragujevac", "Danas", "Nakosutra", 4));
+        driver5.Add_Voznja(new Voznja(ID,"Krusevac", "Presevo", "15:00", "20:00", 2));
+        driver6.Add_Voznja(new Voznja(ID,"Subotica", "Budapest", "08:00", "20:00", 1));
+        driver7.Add_Voznja(new Voznja(ID,"Kuca", "Poso", "Danas", "Kasnije Danas", 3));
 
 
         Nalozi.add(driver1);

@@ -53,6 +53,13 @@
                 android:hint="Vreme Dolaska"
                 android:ems="10"
                 android:id="@+id/Vreme_Dolaska"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/Slobodnih_Mesta"
+                android:ems="10"
+                android:hint="Slobodni Mesta: (pr.) 4"/>
         <Button
                 android:text="Nova Voznja"
                 android:layout_width="wrap_content"

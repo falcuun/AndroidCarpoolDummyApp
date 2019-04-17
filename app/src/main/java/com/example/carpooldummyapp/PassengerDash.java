@@ -6,10 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.*;
 
 import java.util.ArrayList;
 
@@ -20,22 +17,18 @@ public class PassengerDash extends AppCompatActivity {
     private ArrayAdapter<Voznja> adapter;
     public static ArrayList<Voznja> Sve_Voznje = new ArrayList<>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger_dash);
 
-<<<<<<< HEAD
-
-=======
-        final ArrayList<Voznja> Sve_Voznje = new ArrayList<>();
->>>>>>> b2e730c7c068e3f05241f9d1266c9c6ee7f57048
         Search_Bar = findViewById(R.id.Search_Name_Bar);
         Sve_Voznje_View = findViewById(R.id.Sve_Voznje);
 
 
-        for(Account acc : Start.Nalozi){
-            if (acc.getTip_naloga() == TIP_NALOGA.VOZAC){
+        for (Account acc : Start.Nalozi) {
+            if (acc.getTip_naloga() == TIP_NALOGA.VOZAC) {
                 DriverAccount Temp_Vozac = (DriverAccount) acc;
                 Sve_Voznje.addAll(Temp_Vozac.getTrenutne_Voznje());
             }
@@ -77,10 +70,13 @@ public class PassengerDash extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(PassengerDash.this, BookingRide.class);
-                intent.putExtra("position", ((Voznja)parent.getAdapter().getItem(position)).get_ID());
+
+                intent.putExtra("position", ((Voznja) parent.getAdapter().getItem(position)).get_ID());
                 startActivity(intent);
             }
         });
 
     }
+
+
 }

@@ -1,9 +1,39 @@
 package com.example.carpooldummyapp;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.Serializable;
 
 public class Voznja implements Serializable {
     private int _ID;
+
+    private String Polazno_Mesto;
+    private String Dolazno_Mesto;
+    private String Vreme_Polaska;
+    private String Vreme_Dolaska;
+    private Mesto Polazno_Mesto_m;
+    private Mesto Dolazno_Mesto_m;
+
+    public Mesto getPolazno_Mesto_m() {
+        return Polazno_Mesto_m;
+    }
+
+    public Mesto getDolazno_Mesto_m() {
+        return Dolazno_Mesto_m;
+    }
+
+    private int Slobodnih_Mesta;
+
+    public Voznja(int ID, String polazno_Mesto, String dolazno_Mesto, String vreme_Polaska, String vreme_Dolaska, int slobodnih_Mesta) {
+        this._ID = ID;
+        Polazno_Mesto = polazno_Mesto;
+        Dolazno_Mesto = dolazno_Mesto;
+        Vreme_Polaska = vreme_Polaska;
+        Vreme_Dolaska = vreme_Dolaska;
+        Slobodnih_Mesta = slobodnih_Mesta;
+        Start.ID++;
+    }
+
 
     public int get_ID() {
         return _ID;
@@ -13,19 +43,6 @@ public class Voznja implements Serializable {
         this._ID = _ID;
     }
 
-    private String Polazno_Mesto;
-    private String Dolazno_Mesto;
-    private String Vreme_Polaska;
-    private String Vreme_Dolaska;
-
-    public Voznja(String polazno_Mesto, String dolazno_Mesto, String vreme_Polaska, String vreme_Dolaska, int ID) {
-        this._ID = ID;
-        Polazno_Mesto = polazno_Mesto;
-        Dolazno_Mesto = dolazno_Mesto;
-        Vreme_Polaska = vreme_Polaska;
-        Vreme_Dolaska = vreme_Dolaska;
-        Start.ID++;
-    }
 
     public String getVreme_Polaska() {
         return Vreme_Polaska;
@@ -60,7 +77,7 @@ public class Voznja implements Serializable {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Polazno Mesto je: " + Polazno_Mesto + '\n' + "Dolazno Mesto je: " + Dolazno_Mesto + '\n'
                 + "Vreme Polaska je: " + Vreme_Polaska + '\n' + "Ocekivano Vreme Dolaska je: " + Vreme_Dolaska + '\n';
     }

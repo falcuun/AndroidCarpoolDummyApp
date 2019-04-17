@@ -13,6 +13,7 @@ public class DriverDash extends AppCompatActivity {
     private EditText Mesto_Dolaska;
     private EditText Vreme_Polaska;
     private EditText Vreme_Dolaska;
+    private EditText Slobodnih_Mesta;
     private Button Nova_Voznja;
     private ListView Lista_Voznje;
     private ArrayAdapter<Voznja> arrayAdapter;
@@ -34,6 +35,7 @@ public class DriverDash extends AppCompatActivity {
         Vreme_Dolaska = findViewById(R.id.Vreme_Dolaska);
         Nova_Voznja = findViewById(R.id.Nova_Voznja);
         Lista_Voznje = findViewById(R.id.driverDrivesList);
+        Slobodnih_Mesta = findViewById(R.id.Slobodnih_Mesta);
         Napravi_Novu_Voznju();
         Izmeni_Voznju();
         Intent i = getIntent();
@@ -94,7 +96,8 @@ public class DriverDash extends AppCompatActivity {
                 String md = Mesto_Dolaska.getText().toString();
                 String vp = Vreme_Polaska.getText().toString();
                 String vd = Vreme_Dolaska.getText().toString();
-                vozac.Add_Voznja(new Voznja(mp, md, vp, vd, Start.ID));
+                int sm = Integer.parseInt(Slobodnih_Mesta.getText().toString());
+                vozac.Add_Voznja(new Voznja(Start.ID, mp, md, vp, vd, sm));
                 arrayAdapter.notifyDataSetChanged();
                 Lista_Voznje.smoothScrollToPosition(arrayAdapter.getCount());
                 Start.ID++;
