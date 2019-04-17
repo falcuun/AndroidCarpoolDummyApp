@@ -53,8 +53,8 @@ public class BookingRide extends AppCompatActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
 
         mMap = googleMap;
-        getLatLng(Selected_Voznja.getPolazno_Mesto(), Selected_Voznja.getPolazno_Mesto_m());
-        getLatLng(Selected_Voznja.getDolazno_Mesto(), Selected_Voznja.getDolazno_Mesto_m());
+        getLatLng(Selected_Voznja.getPolazno_Mesto());
+        getLatLng(Selected_Voznja.getDolazno_Mesto());
 
         List<LatLng> path = new ArrayList();
         GeoApiContext context = new GeoApiContext();
@@ -108,18 +108,15 @@ public class BookingRide extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
-    public void getLatLng(String query, final Mesto mesto) {
+    public void getLatLng(String query) {
         String url = "http://api.openweathermap.org/data/2.5/weather?q=" + query + "&units=metric&appid=8API_KEY";
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            Mesto m = mesto;
             @Override
             public void onResponse(JSONObject response) {
                 try {
                     double lat = ((JSONObject) response.opt("coord")).getDouble("lat");
                     double lon = ((JSONObject) response.opt("coord")).getDouble("lon");
-                    m.setLat(lat);
-                    m.setLon(lon);
                     LatLng tempLL = new LatLng(lat, lon);
                     mMap.addMarker(new MarkerOptions().position(tempLL).title("Marker"));
                     CameraPosition cameraPosition = new CameraPosition.Builder().target(tempLL).zoom(5.0f).build();
