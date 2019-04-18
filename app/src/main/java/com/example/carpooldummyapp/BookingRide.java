@@ -1,9 +1,11 @@
 package com.example.carpooldummyapp;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -15,24 +17,15 @@ import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolylineOptions;
-import com.google.maps.DirectionsApi;
-import com.google.maps.DirectionsApiRequest;
-import com.google.maps.GeoApiContext;
-import com.google.maps.model.*;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class BookingRide extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private LatLng Polazno_Mesto;
-    private LatLng Dolazno_Mesto;
     private Voznja Selected_Voznja;
+    private TextView Polazno_Mesto, Dolazno_Mesto, Polazno_Vreme, Dolazno_Vreme, Slobodna_Mesta;
+    private Button Cancel_Button, Book_Button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +33,40 @@ public class BookingRide extends AppCompatActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_booking_ride);
 
 
+        Polazno_Mesto = findViewById(R.id.Polazno_Mesto);
+        Dolazno_Mesto = findViewById(R.id.Polazno_Vreme);
+        Polazno_Vreme = findViewById(R.id.Dolazno_Mesto);
+        Dolazno_Vreme = findViewById(R.id.Dolazno_Vreme);
+        Slobodna_Mesta = findViewById(R.id.Slobodna_Mesta);
+        Cancel_Button = findViewById(R.id.Cancel_Button);
+        Book_Button = findViewById(R.id.Book_Ride_Button);
+
+        Polazno_Mesto.setText(getIntent().getStringExtra("Polazno Mesto"));
+        Dolazno_Mesto.setText(getIntent().getStringExtra("Dolazno Mesto"));
+        Polazno_Vreme.setText(getIntent().getStringExtra("Polazno Vreme"));
+        Dolazno_Vreme.setText(getIntent().getStringExtra("Dolazno Vreme"));
+
         int position = getIntent().getIntExtra("position", 0);
-        Selected_Voznja = PassengerDash.Sve_Voznje.get(position);
+
+        for (Voznja v : PassengerDash.Sve_Voznje){
+            if(v.get_ID() == position){
+                Selected_Voznja = v;
+            }
+        }
+        Book_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(BookingRide.this, RideInProgress.class);
+                startActivity(i);
+            }
+        });
+        Cancel_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -51,65 +76,13 @@ public class BookingRide extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
         mMap = googleMap;
         getLatLng(Selected_Voznja.getPolazno_Mesto());
         getLatLng(Selected_Voznja.getDolazno_Mesto());
-
-        List<LatLng> path = new ArrayList();
-        GeoApiContext context = new GeoApiContext();
-        DirectionsApiRequest req = DirectionsApi.getDirections(context,
-                Selected_Voznja.getPolazno_Mesto_m().getLat() + "," + Selected_Voznja.getPolazno_Mesto_m().getLon(),
-                Selected_Voznja.getDolazno_Mesto_m().getLat() + "," + Selected_Voznja.getDolazno_Mesto_m().getLon());
-        try {
-            DirectionsResult res = req.await();
-
-            if (res.routes != null && res.routes.length > 0) {
-                DirectionsRoute route = res.routes[0];
-
-                if (route.legs != null) {
-                    for (int i = 0; i < route.legs.length; i++) {
-                        DirectionsLeg leg = route.legs[i];
-                        if (leg.steps != null) {
-                            for (int j = 0; j < leg.steps.length; j++) {
-                                DirectionsStep step = leg.steps[j];
-                                if (step.steps != null && step.steps.length > 0) {
-                                    for (int k = 0; k < step.steps.length; k++) {
-                                        DirectionsStep step1 = step.steps[k];
-                                        EncodedPolyline points1 = step1.polyline;
-                                        if (points1 != null) {
-                                            //Decode polyline and add points to list of route coordinates
-                                            List<com.google.maps.model.LatLng> coords1 = points1.decodePath();
-                                            for (com.google.maps.model.LatLng coord1 : coords1) {
-                                                path.add(new LatLng(coord1.lat, coord1.lng));
-                                            }
-                                        }
-                                    }
-                                } else {
-                                    EncodedPolyline points = step.polyline;
-                                    if (points != null) {
-                                        List<com.google.maps.model.LatLng> coords = points.decodePath();
-                                        for (com.google.maps.model.LatLng coord : coords) {
-                                            path.add(new LatLng(coord.lat, coord.lng));
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        } catch (Exception ex) {
-
-        }
-        if (path.size() > 0) {
-            PolylineOptions opts = new PolylineOptions().addAll(path).color(Color.BLUE).width(5);
-            mMap.addPolyline(opts);
-        }
     }
 
     public void getLatLng(String query) {
-        String url = "http://api.openweathermap.org/data/2.5/weather?q=" + query + "&units=metric&appid=8API_KEY";
+        String url = "http://api.openweathermap.org/data/2.5/weather?q=" + query + "&units=metric&appid=8d0c53f37b08f1d5abf0aa4f01bf8118";
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override

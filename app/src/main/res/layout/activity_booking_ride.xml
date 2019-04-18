@@ -15,9 +15,9 @@
                 android:layout_weight="50"
                 android:orientation="vertical">
 
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:id="@+id/Polazno_Mesto"/>
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:id="@+id/Polazno_Vreme"/>
         </LinearLayout>
 
@@ -27,11 +27,11 @@
                 android:layout_weight="50"
                 android:orientation="vertical">
 
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:id="@+id/Dolazno_Mesto"/>
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:id="@+id/Dolazno_Vreme"/>
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:id="@+id/Slobodna_Mesta"/>
         </LinearLayout>
     </LinearLayout>
@@ -40,7 +40,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_weight="40">
+            android:layout_weight="90">
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
                   xmlns:tools="http://schemas.android.com/tools"
                   android:layout_width="match_parent"

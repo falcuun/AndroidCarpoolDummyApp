@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 
@@ -18,16 +19,16 @@ public class Start extends AppCompatActivity {
     TIP_NALOGA tip;
     public static int ID = 0;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        DriverAccount driver1 = new DriverAccount("Vozac1", "Vozi1", "1", "vozac@1", "BMW", TIP_NALOGA.VOZAC);
-        DriverAccount driver2 = new DriverAccount("Vozac2", "Vozi2", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC);
-        DriverAccount driver3 = new DriverAccount("Vozac3", "Vozi3", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC);
-        DriverAccount driver4 = new DriverAccount("Vozac4", "Vozi4", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC);
-        DriverAccount driver5 = new DriverAccount("Vozac5", "Vozi5", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC);
-        DriverAccount driver6 = new DriverAccount("Vozac6", "Vozi6", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC);
-        DriverAccount driver7 = new DriverAccount("Vozac7", "Vozi7", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC);
+    static boolean Dummy_Data_Added = false;
+
+    void Add_Dummy_Data(){
+        DriverAccount driver1 = new DriverAccount("Vozac1", "Vozi1", "1", "vozac@1", "BMW", TIP_NALOGA.VOZAC, 0);
+        DriverAccount driver2 = new DriverAccount("Vozac2", "Vozi2", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC, 0);
+        DriverAccount driver3 = new DriverAccount("Vozac3", "Vozi3", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC, 0);
+        DriverAccount driver4 = new DriverAccount("Vozac4", "Vozi4", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC, 0);
+        DriverAccount driver5 = new DriverAccount("Vozac5", "Vozi5", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC, 0);
+        DriverAccount driver6 = new DriverAccount("Vozac6", "Vozi6", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC, 0);
+        DriverAccount driver7 = new DriverAccount("Vozac7", "Vozi7", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC, 0);
 
         Account passenger1 = new PassengerAccount("Putnik1", "Putuje1", "2", "putnik@1", TIP_NALOGA.PUTNIK);
 
@@ -49,6 +50,19 @@ public class Start extends AppCompatActivity {
         Nalozi.add(driver7);
         Nalozi.add(passenger1);
         Toast.makeText(this, String.valueOf(Nalozi.size()), Toast.LENGTH_LONG).show();
+
+        Dummy_Data_Added = true;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.e("SPARTAAAAAAAAAAAAAAAAAA", String.valueOf(Nalozi.size()));
+        if(!Dummy_Data_Added){
+
+            Add_Dummy_Data();
+        }
+
         Log_In();
     }
 
@@ -139,7 +153,7 @@ public class Start extends AppCompatActivity {
     }
 
     private void Register_New_Driver(String ime, String prezime, String email, String telefon, String model) {
-        Nalozi.add(new DriverAccount(ime, prezime, telefon, email, model, TIP_NALOGA.VOZAC));
+        Nalozi.add(new DriverAccount(ime, prezime, telefon, email, model, TIP_NALOGA.VOZAC, 0));
     }
 
     String Car_model;
@@ -160,4 +174,5 @@ public class Start extends AppCompatActivity {
                 .create();
         dialog.show();
     }
+
 }

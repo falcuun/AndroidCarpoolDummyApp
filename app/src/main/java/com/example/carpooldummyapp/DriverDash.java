@@ -98,6 +98,7 @@ public class DriverDash extends AppCompatActivity {
                 String vd = Vreme_Dolaska.getText().toString();
                 int sm = Integer.parseInt(Slobodnih_Mesta.getText().toString());
                 vozac.Add_Voznja(new Voznja(Start.ID, mp, md, vp, vd, sm));
+                PassengerDash.Sve_Voznje.add(new Voznja(Start.ID, mp, md, vp, vd, sm));
                 arrayAdapter.notifyDataSetChanged();
                 Lista_Voznje.smoothScrollToPosition(arrayAdapter.getCount());
                 Start.ID++;
