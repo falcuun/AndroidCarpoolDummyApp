@@ -1,6 +1,6 @@
 # AndroidCarpoolDummyApp
 
-(WORK IN PROGRESS)!!!
+(As class is finished, project is currently halted until further notice)!!!
 
 Creating Android App for carpooling for Human-Computer Interaction class. 
 Continuing a project from separate github repository in much simpler way. 
