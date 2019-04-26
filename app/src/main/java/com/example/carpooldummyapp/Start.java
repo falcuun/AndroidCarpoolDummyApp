@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 
@@ -16,21 +17,52 @@ public class Start extends AppCompatActivity {
     Spinner spinner;
     String Acc_Name;
     TIP_NALOGA tip;
+    public static int ID = 0;
+
+    static boolean Dummy_Data_Added = false;
+
+    void Add_Dummy_Data(){
+        DriverAccount driver1 = new DriverAccount("Vozac1", "Vozi1", "1", "vozac@1", "BMW", TIP_NALOGA.VOZAC, 0);
+        DriverAccount driver2 = new DriverAccount("Vozac2", "Vozi2", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC, 0);
+        DriverAccount driver3 = new DriverAccount("Vozac3", "Vozi3", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC, 0);
+        DriverAccount driver4 = new DriverAccount("Vozac4", "Vozi4", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC, 0);
+        DriverAccount driver5 = new DriverAccount("Vozac5", "Vozi5", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC, 0);
+        DriverAccount driver6 = new DriverAccount("Vozac6", "Vozi6", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC, 0);
+        DriverAccount driver7 = new DriverAccount("Vozac7", "Vozi7", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC, 0);
+
+        Account passenger1 = new PassengerAccount("Putnik1", "Putuje1", "2", "putnik@1", TIP_NALOGA.PUTNIK);
+
+        driver1.Add_Voznja(new Voznja(ID,"Belgrade", "Novi Sad", "Danas", "Sutra", 2));
+        driver2.Add_Voznja(new Voznja(ID,"Paracin", "Nis", "Ponedeljak", "Utorak",3));
+        driver3.Add_Voznja(new Voznja(ID,"Cuprija", "Jagodina", "Subota", "Nedelja", 1));
+        driver4.Add_Voznja(new Voznja(ID,"Kraljevo", "Kragujevac", "Danas", "Nakosutra", 4));
+        driver5.Add_Voznja(new Voznja(ID,"Krusevac", "Presevo", "15:00", "20:00", 2));
+        driver6.Add_Voznja(new Voznja(ID,"Subotica", "Budapest", "08:00", "20:00", 1));
+        driver7.Add_Voznja(new Voznja(ID,"Kuca", "Poso", "Danas", "Kasnije Danas", 3));
+
+
+        Nalozi.add(driver1);
+        Nalozi.add(driver2);
+        Nalozi.add(driver3);
+        Nalozi.add(driver4);
+        Nalozi.add(driver5);
+        Nalozi.add(driver6);
+        Nalozi.add(driver7);
+        Nalozi.add(passenger1);
+        Toast.makeText(this, String.valueOf(Nalozi.size()), Toast.LENGTH_LONG).show();
+
+        Dummy_Data_Added = true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Account driver1 = new DriverAccount("Vozac1", "Vozi1", "1", "vozac@1", "BMW", TIP_NALOGA.VOZAC);
-        Account driver2 = new DriverAccount("Vozac2", "Vozi2", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC);
-        Account passenger1 = new PassengerAccount("Putnik1", "Putuje1", "2", "putnik@1", TIP_NALOGA.PUTNIK);
+        Log.e("SPARTAAAAAAAAAAAAAAAAAA", String.valueOf(Nalozi.size()));
+        if(!Dummy_Data_Added){
 
-        ((DriverAccount) driver1).Add_Voznja(new Voznja("Beograd", "Novi Sad", "Danas", "Sutra"));
-        ((DriverAccount) driver2).Add_Voznja(new Voznja("Paracin", "Nis", "Ponedeljak", "Utorak"));
+            Add_Dummy_Data();
+        }
 
-        Nalozi.add(driver1);
-        Nalozi.add(driver2);
-        Nalozi.add(passenger1);
-        Toast.makeText(this, String.valueOf(Nalozi.size()), Toast.LENGTH_LONG).show();
         Log_In();
     }
 
@@ -121,7 +153,7 @@ public class Start extends AppCompatActivity {
     }
 
     private void Register_New_Driver(String ime, String prezime, String email, String telefon, String model) {
-        Nalozi.add(new DriverAccount(ime, prezime, telefon, email, model, TIP_NALOGA.VOZAC));
+        Nalozi.add(new DriverAccount(ime, prezime, telefon, email, model, TIP_NALOGA.VOZAC, 0));
     }
 
     String Car_model;
@@ -142,4 +174,5 @@ public class Start extends AppCompatActivity {
                 .create();
         dialog.show();
     }
+
 }

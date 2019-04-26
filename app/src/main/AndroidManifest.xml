@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.carpooldummyapp">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -9,11 +12,29 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".RideInProgress">
+        </activity>
+
+        <meta-data
+                android:name="com.google.android.gms.version"
+                android:value="@integer/google_play_services_version"/>
+        <meta-data
+                android:name="com.google.android.geo.API_KEY"
+                android:value="API_KEY"/>
         <activity android:name=".BookingRide">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".PassengerDash" />
         </activity>
         <activity android:name=".PassengerDash">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".Start" />
         </activity>
         <activity android:name=".DriverDash">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".Start" />
         </activity>
         <activity android:name=".Start">
             <intent-filter>

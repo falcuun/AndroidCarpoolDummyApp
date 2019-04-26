@@ -6,10 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.*;
 
 import java.util.ArrayList;
 
@@ -18,6 +15,7 @@ public class PassengerDash extends AppCompatActivity {
     private EditText Search_Bar;
     private ListView Sve_Voznje_View;
     private ArrayAdapter<Voznja> adapter;
+    public static ArrayList<Voznja> Sve_Voznje = new ArrayList<>();
 
 
     @Override
@@ -25,15 +23,15 @@ public class PassengerDash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger_dash);
 
-        final ArrayList<Voznja> Sve_Voznje = new ArrayList<>();
         Search_Bar = findViewById(R.id.Search_Name_Bar);
         Sve_Voznje_View = findViewById(R.id.Sve_Voznje);
 
-
-        for(Account acc : Start.Nalozi){
-            if (acc.getTip_naloga() == TIP_NALOGA.VOZAC){
-                DriverAccount Temp_Vozac = (DriverAccount) acc;
-                Sve_Voznje.addAll(Temp_Vozac.getTrenutne_Voznje());
+        if(Sve_Voznje.size() == 0) {
+            for (Account acc : Start.Nalozi) {
+                if (acc.getTip_naloga() == TIP_NALOGA.VOZAC) {
+                    DriverAccount Temp_Vozac = (DriverAccount) acc;
+                    Sve_Voznje.addAll(Temp_Vozac.getTrenutne_Voznje());
+                }
             }
         }
 
@@ -49,6 +47,8 @@ public class PassengerDash extends AppCompatActivity {
                 intent.putExtra("Dolazno Mesto", Sve_Voznje.get(position).getDolazno_Mesto());
                 intent.putExtra("Polazno Vreme", Sve_Voznje.get(position).getVreme_Polaska());
                 intent.putExtra("Dolazno Vreme", Sve_Voznje.get(position).getVreme_Dolaska());
+                intent.putExtra("position", ((Voznja) parent.getAdapter().getItem(position)).get_ID());
+                startActivity(intent);
             }
         });
 
@@ -68,13 +68,7 @@ public class PassengerDash extends AppCompatActivity {
 
             }
         });
-
-        Sve_Voznje_View.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-        });
-
     }
+
+
 }
