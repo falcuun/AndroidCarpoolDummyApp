@@ -5,4 +5,8 @@
     <color name="colorAccent">#D81B60</color>
     <color name="color_purple">#800080</color>
     <color name="link_blue">#335AFF</color>
+    <color name="poppy">#FF420E</color>
+    <color name="stem">#80BD9E</color>
+    <color name="meadow">#598234</color>
+    <color name="gray">#bababa </color>
 </resources>
