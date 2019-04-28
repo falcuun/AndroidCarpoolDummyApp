@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -23,8 +22,8 @@ import org.json.JSONObject;
 public class BookingRide extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private Voznja Selected_Voznja;
-    private TextView Polazno_Mesto, Dolazno_Mesto, Polazno_Vreme, Dolazno_Vreme, Slobodna_Mesta;
+    private Ride Selected_Ride;
+    private TextView Departure_Location, Arrival_Location, Departure_Time, Arrival_Time, Free_Spaces;
     private Button Cancel_Button, Book_Button;
 
     @Override
@@ -33,24 +32,24 @@ public class BookingRide extends AppCompatActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_booking_ride);
 
 
-        Polazno_Mesto = findViewById(R.id.Polazno_Mesto);
-        Dolazno_Mesto = findViewById(R.id.Polazno_Vreme);
-        Polazno_Vreme = findViewById(R.id.Dolazno_Mesto);
-        Dolazno_Vreme = findViewById(R.id.Dolazno_Vreme);
-        Slobodna_Mesta = findViewById(R.id.Slobodna_Mesta);
+        Departure_Location = findViewById(R.id.Booking_Departure_Location);
+        Arrival_Location = findViewById(R.id.Booking_Arrival_Location);
+        Departure_Time = findViewById(R.id.Booking_Departure_Time);
+        Arrival_Time = findViewById(R.id.Booking_Arrival_Time);
+        Free_Spaces = findViewById(R.id.Booking_Free_Seats);
         Cancel_Button = findViewById(R.id.Cancel_Button);
         Book_Button = findViewById(R.id.Book_Ride_Button);
 
-        Polazno_Mesto.setText(getIntent().getStringExtra("Polazno Mesto"));
-        Dolazno_Mesto.setText(getIntent().getStringExtra("Dolazno Mesto"));
-        Polazno_Vreme.setText(getIntent().getStringExtra("Polazno Vreme"));
-        Dolazno_Vreme.setText(getIntent().getStringExtra("Dolazno Vreme"));
+        Departure_Location.setText(getIntent().getStringExtra(PassengerDash.DEPARTURE_LOCATION));
+        Arrival_Location.setText(getIntent().getStringExtra(PassengerDash.ARRIVAL_LOCATION));
+        Departure_Time.setText(getIntent().getStringExtra(PassengerDash.DEPARTURE_TIME));
+        Arrival_Time.setText(getIntent().getStringExtra(PassengerDash.ARRIVAL_TIME));
 
         int position = getIntent().getIntExtra("position", 0);
 
-        for (Voznja v : PassengerDash.Sve_Voznje){
+        for (Ride v : PassengerDash.All_Rides_Array){
             if(v.get_ID() == position){
-                Selected_Voznja = v;
+                Selected_Ride = v;
             }
         }
         Book_Button.setOnClickListener(new View.OnClickListener() {
@@ -77,8 +76,8 @@ public class BookingRide extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        getLatLng(Selected_Voznja.getPolazno_Mesto());
-        getLatLng(Selected_Voznja.getDolazno_Mesto());
+        getLatLng(Selected_Ride.getDeparture_Location());
+        getLatLng(Selected_Ride.getArrival_Location());
     }
 
     public void getLatLng(String query) {

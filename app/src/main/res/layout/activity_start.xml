@@ -8,7 +8,7 @@
         tools:context=".Start">
 
     <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
-              android:hint="Enter Name" android:inputType="text" android:id="@+id/Input_Ime"
+              android:hint="Enter Name" android:inputType="text" android:id="@+id/Input_Name"
               app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
               android:layout_marginBottom="424dp" app:layout_constraintBottom_toBottomOf="parent"
               app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"

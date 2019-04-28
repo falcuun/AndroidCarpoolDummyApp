@@ -4,55 +4,56 @@ import java.util.ArrayList;
 
 public class DriverAccount extends Account {
 
-    private String Model_Vozila;
-    private ArrayList<Voznja> Trenutne_Voznje = new ArrayList<>();
+    private String Vehicle_Model;
+    private ArrayList<Ride> Scheduled_Rides = new ArrayList<>();
 
-    public TIP_NALOGA getTip() {
-        return tip;
+    private ACCOUNT_TYPE account_type = ACCOUNT_TYPE.DRIVER;
+    private int Rating = 0;
+    
+    public ACCOUNT_TYPE getAccount_type() {
+        return account_type;
     }
 
-    public void setTip(TIP_NALOGA tip) {
-        this.tip = tip;
+    public void setAccount_type(ACCOUNT_TYPE account_type) {
+        this.account_type = account_type;
     }
 
-    private TIP_NALOGA tip = TIP_NALOGA.VOZAC;
-    private int Reputacija = 0;
 
-    public DriverAccount(String ime, String prezime, String telefon, String Email, String model_Vozila, TIP_NALOGA tip_naloga, int reputacija) {
-        super(ime, prezime, telefon, Email, tip_naloga);
-        this.Model_Vozila = model_Vozila;
-        Reputacija = reputacija;
+    public DriverAccount(String name, String surname, String phone, String Email, String Vehicle_Model, ACCOUNT_TYPE account_type, int Rating) {
+        super(name, surname, phone, Email, account_type);
+        this.Vehicle_Model = Vehicle_Model;
+        this.Rating = Rating;
     }
 
     public DriverAccount(){}
 
 
-    public void Add_Voznja(Voznja voznja){
-        Trenutne_Voznje.add(voznja);
+    public void Add_Ride(Ride ride){
+        Scheduled_Rides.add(ride);
     }
 
-    public String getModel_Vozila() {
-        return Model_Vozila;
+    public String getVehicle_Model() {
+        return Vehicle_Model;
     }
 
-    public void setModel_Vozila(String model_Vozila) {
-        Model_Vozila = model_Vozila;
+    public void setVehicle_Model(String Vehicle_Model) {
+        Vehicle_Model = Vehicle_Model;
     }
 
-    public ArrayList<Voznja> getTrenutne_Voznje() {
-        return Trenutne_Voznje;
+    public ArrayList<Ride> getScheduled_Rides() {
+        return Scheduled_Rides;
     }
 
-    public void setTrenutne_Voznje(ArrayList<Voznja> trenutne_Voznje) {
-        Trenutne_Voznje = trenutne_Voznje;
+    public void setScheduled_Rides(ArrayList<Ride> Scheduled_Rides) {
+        Scheduled_Rides = Scheduled_Rides;
     }
 
 
-    public void Dobra_Reputacija(){
-        Reputacija += 1;
+    public void Good_Rating(){
+        Rating += 1;
     }
 
-    public void Losa_Reputacija(){
-        Reputacija -= 1;
+    public void Bad_Rating(){
+        Rating -= 1;
     }
 }

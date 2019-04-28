@@ -13,43 +13,44 @@ import android.widget.*;
 import java.util.ArrayList;
 
 public class Start extends AppCompatActivity {
-    static ArrayList<Account> Nalozi = new ArrayList<>();
+    static ArrayList<Account> All_Accounts = new ArrayList<>();
     Spinner spinner;
     String Acc_Name;
-    TIP_NALOGA tip;
+    ACCOUNT_TYPE type;
     public static int ID = 0;
 
     static boolean Dummy_Data_Added = false;
 
     void Add_Dummy_Data(){
-        DriverAccount driver1 = new DriverAccount("Vozac1", "Vozi1", "1", "vozac@1", "BMW", TIP_NALOGA.VOZAC, 0);
-        DriverAccount driver2 = new DriverAccount("Vozac2", "Vozi2", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC, 0);
-        DriverAccount driver3 = new DriverAccount("Vozac3", "Vozi3", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC, 0);
-        DriverAccount driver4 = new DriverAccount("Vozac4", "Vozi4", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC, 0);
-        DriverAccount driver5 = new DriverAccount("Vozac5", "Vozi5", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC, 0);
-        DriverAccount driver6 = new DriverAccount("Vozac6", "Vozi6", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC, 0);
-        DriverAccount driver7 = new DriverAccount("Vozac7", "Vozi7", "2", "vozac@2", "BMW", TIP_NALOGA.VOZAC, 0);
+        DriverAccount driver1 = new DriverAccount("Vozac1", "Vozi1", "1", "vozac@1", "BMW", ACCOUNT_TYPE.DRIVER, 0);
+        DriverAccount driver2 = new DriverAccount("Vozac2", "Vozi2", "2", "vozac@2", "BMW", ACCOUNT_TYPE.DRIVER, 0);
+        DriverAccount driver3 = new DriverAccount("Vozac3", "Vozi3", "2", "vozac@2", "BMW", ACCOUNT_TYPE.DRIVER, 0);
+        DriverAccount driver4 = new DriverAccount("Vozac4", "Vozi4", "2", "vozac@2", "BMW", ACCOUNT_TYPE.DRIVER, 0);
+        DriverAccount driver5 = new DriverAccount("Vozac5", "Vozi5", "2", "vozac@2", "BMW", ACCOUNT_TYPE.DRIVER, 0);
+        DriverAccount driver6 = new DriverAccount("Vozac6", "Vozi6", "2", "vozac@2", "BMW", ACCOUNT_TYPE.DRIVER, 0);
+        DriverAccount driver7 = new DriverAccount("Vozac7", "Vozi7", "2", "vozac@2", "BMW", ACCOUNT_TYPE.DRIVER, 0);
 
-        Account passenger1 = new PassengerAccount("Putnik1", "Putuje1", "2", "putnik@1", TIP_NALOGA.PUTNIK);
+        Account passenger1 = new PassengerAccount("Putnik1", "Putuje1", "2", "putnik@1", ACCOUNT_TYPE.PASSENGER);
 
-        driver1.Add_Voznja(new Voznja(ID,"Belgrade", "Novi Sad", "Danas", "Sutra", 2));
-        driver2.Add_Voznja(new Voznja(ID,"Paracin", "Nis", "Ponedeljak", "Utorak",3));
-        driver3.Add_Voznja(new Voznja(ID,"Cuprija", "Jagodina", "Subota", "Nedelja", 1));
-        driver4.Add_Voznja(new Voznja(ID,"Kraljevo", "Kragujevac", "Danas", "Nakosutra", 4));
-        driver5.Add_Voznja(new Voznja(ID,"Krusevac", "Presevo", "15:00", "20:00", 2));
-        driver6.Add_Voznja(new Voznja(ID,"Subotica", "Budapest", "08:00", "20:00", 1));
-        driver7.Add_Voznja(new Voznja(ID,"Kuca", "Poso", "Danas", "Kasnije Danas", 3));
+        driver1.Add_Ride(new Ride(ID,"Belgrade", "Novi Sad", "Danas", "Sutra", 2));
+        driver2.Add_Ride(new Ride(ID,"Paracin", "Nis", "Ponedeljak", "Utorak",3));
+        driver3.Add_Ride(new Ride(ID,"Cuprija", "Jagodina", "Subota", "Nedelja", 1));
+        driver4.Add_Ride(new Ride(ID,"Kraljevo", "Kragujevac", "Danas", "Nakosutra", 4));
+        driver5.Add_Ride(new Ride(ID,"Krusevac", "Presevo", "15:00", "20:00", 2));
+        driver6.Add_Ride(new Ride(ID,"Subotica", "Budapest", "08:00", "20:00", 1));
+        driver7.Add_Ride(new Ride(ID,"Kuca", "Poso", "Danas", "Kasnije Danas", 3));
+        driver7.Add_Ride(new Ride(ID,"Kuca", "Poso", "Danas", "Kasnije Danas", 3));
 
 
-        Nalozi.add(driver1);
-        Nalozi.add(driver2);
-        Nalozi.add(driver3);
-        Nalozi.add(driver4);
-        Nalozi.add(driver5);
-        Nalozi.add(driver6);
-        Nalozi.add(driver7);
-        Nalozi.add(passenger1);
-        Toast.makeText(this, String.valueOf(Nalozi.size()), Toast.LENGTH_LONG).show();
+        All_Accounts.add(driver1);
+        All_Accounts.add(driver2);
+        All_Accounts.add(driver3);
+        All_Accounts.add(driver4);
+        All_Accounts.add(driver5);
+        All_Accounts.add(driver6);
+        All_Accounts.add(driver7);
+        All_Accounts.add(passenger1);
+        Toast.makeText(this, String.valueOf(All_Accounts.size()), Toast.LENGTH_LONG).show();
 
         Dummy_Data_Added = true;
     }
@@ -57,7 +58,7 @@ public class Start extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e("SPARTAAAAAAAAAAAAAAAAAA", String.valueOf(Nalozi.size()));
+        Log.e("SPARTAAAAAAAAAAAAAAAAAA", String.valueOf(All_Accounts.size()));
         if(!Dummy_Data_Added){
 
             Add_Dummy_Data();
@@ -66,11 +67,11 @@ public class Start extends AppCompatActivity {
         Log_In();
     }
 
-    private boolean User_Exists(ArrayList<Account> list, String Ime_Query) {
+    private boolean User_Exists(ArrayList<Account> list, String name_Query) {
         for (Account acc : list) {
-            if (acc.getIme().equalsIgnoreCase(Ime_Query)) {
-                Acc_Name = acc.getIme();
-                tip = acc.getTip_naloga();
+            if (acc.getName().equalsIgnoreCase(name_Query)) {
+                Acc_Name = acc.getName();
+                type = acc.getACCOUNT_TYPE();
                 return true;
             }
         }
@@ -79,7 +80,7 @@ public class Start extends AppCompatActivity {
 
     private void Driver_Dash() {
         Intent intent = new Intent(this, DriverDash.class);
-        intent.putExtra("Nalog", Acc_Name);
+        intent.putExtra("Account", Acc_Name);
         startActivity(intent);
     }
 
@@ -91,15 +92,15 @@ public class Start extends AppCompatActivity {
     private void Log_In() {
         setContentView(R.layout.activity_start);
 
-        final EditText Input_Ime = findViewById(R.id.Input_Ime);
+        final EditText Input_name = findViewById(R.id.Input_Name);
         Button Login_Button = findViewById(R.id.Login_Button);
 
         Login_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (User_Exists(Nalozi, Input_Ime.getText().toString())) {
+                if (User_Exists(All_Accounts, Input_name.getText().toString())) {
                     Toast.makeText(Start.this, "Account Exists", Toast.LENGTH_LONG).show();
-                    if (tip == TIP_NALOGA.PUTNIK) {
+                    if (type == ACCOUNT_TYPE.PASSENGER) {
                         Passenger_Dash();
                     } else {
                         Driver_Dash();
@@ -124,36 +125,36 @@ public class Start extends AppCompatActivity {
 
         spinner.setAdapter(adapter);
 
-        final EditText Novo_Ime = findViewById(R.id.Novo_Ime);
-        final EditText Novo_Prezime = findViewById(R.id.Novo_Prezime);
-        final EditText Novi_Telefon = findViewById(R.id.Novi_Telefon);
-        final EditText Novi_Email = findViewById(R.id.Novi_Email);
+        final EditText New_Account_Name = findViewById(R.id.New_Name);
+        final EditText New_Account_Lastname = findViewById(R.id.New_Lastname);
+        final EditText New_Account_Phone = findViewById(R.id.New_Phone);
+        final EditText New_Account_Email = findViewById(R.id.New_Email);
         Button Register = findViewById(R.id.Register_Button);
 
         Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String ime = Novo_Ime.getText().toString();
-                String prezime = Novo_Prezime.getText().toString();
-                String Telefon = Novi_Telefon.getText().toString();
-                String Email = Novi_Email.getText().toString();
+                String name = New_Account_Name.getText().toString();
+                String lastname = New_Account_Lastname.getText().toString();
+                String phone = New_Account_Phone.getText().toString();
+                String Email = New_Account_Email.getText().toString();
                 if (spinner.getSelectedItemPosition() == 0) {
                     showAddItemDialog(Start.this);
-                    Register_New_Driver(ime, prezime, Telefon, Email, Car_model);
+                    Register_New_Driver(name, lastname, phone, Email, Car_model);
                 } else {
-                    Register_New_Passenger(ime, prezime, Telefon, Email);
+                    Register_New_Passenger(name, lastname, phone, Email);
                 }
             }
         });
     }
 
-    private void Register_New_Passenger(String ime, String prezime, String email, String telefon) {
-        Nalozi.add(new PassengerAccount(ime, prezime, telefon, email, TIP_NALOGA.PUTNIK));
+    private void Register_New_Passenger(String name, String lastname, String email, String phone) {
+        All_Accounts.add(new PassengerAccount(name, lastname, phone, email, ACCOUNT_TYPE.PASSENGER));
     }
 
-    private void Register_New_Driver(String ime, String prezime, String email, String telefon, String model) {
-        Nalozi.add(new DriverAccount(ime, prezime, telefon, email, model, TIP_NALOGA.VOZAC, 0));
+    private void Register_New_Driver(String name, String lastname, String email, String phone, String model) {
+        All_Accounts.add(new DriverAccount(name, lastname, phone, email, model, ACCOUNT_TYPE.DRIVER, 0));
     }
 
     String Car_model;

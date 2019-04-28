@@ -28,43 +28,43 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:hint="Mesto Polaska"
+                android:hint="Departure Location"
                 android:ems="10"
-                android:id="@+id/Novi_Polazak"/>
+                android:id="@+id/New_Departure_Location"/>
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:hint="Mesto Dolaska"
+                android:hint="Arrival Location"
                 android:ems="10"
-                android:id="@+id/Novi_Dolazak"/>
+                android:id="@+id/New_Arrival_Location"/>
 
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:hint="Vreme Polaska"
+                android:hint="Departure Time"
                 android:ems="10"
-                android:id="@+id/Vreme_Polaska"/>
+                android:id="@+id/New_Departure_Time"/>
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:hint="Vreme Dolaska"
+                android:hint="Arrival Time"
                 android:ems="10"
-                android:id="@+id/Vreme_Dolaska"/>
+                android:id="@+id/New_Arrival_Time"/>
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:id="@+id/Slobodnih_Mesta"
+                android:id="@+id/New_Free_Spaces"
                 android:ems="10"
-                android:hint="Slobodni Mesta: (pr.) 4"/>
+                android:hint="Free Spaces: (e.g.) 4"/>
         <Button
-                android:text="Nova Voznja"
+                android:text="Create Ride"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/Nova_Voznja"
+                android:id="@+id/New_Ride_Submit"
                 android:layout_gravity="center"/>
     </LinearLayout>
 </LinearLayout>

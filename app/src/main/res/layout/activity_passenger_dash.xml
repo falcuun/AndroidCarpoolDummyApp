@@ -19,7 +19,7 @@
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content">
         <ListView android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:id="@+id/Sve_Voznje"/>
+                  android:id="@+id/Rides"/>
     </LinearLayout>
 
 </LinearLayout>

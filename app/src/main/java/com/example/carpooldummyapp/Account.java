@@ -2,56 +2,56 @@ package com.example.carpooldummyapp;
 
 import java.io.Serializable;
 
-enum TIP_NALOGA {VOZAC, PUTNIK}
+enum ACCOUNT_TYPE {DRIVER, PASSENGER}
 
 
 public class Account implements Serializable {
-    private String Ime;
-    private String Prezime;
-    private String Telefon;
+    private String Name;
+    private String Surname;
+    private String Phone;
     private String Email;
-    TIP_NALOGA tip_naloga;
+    ACCOUNT_TYPE ACCOUNT_TYPE;
 
-    public Account(String ime, String prezime, String telefon, String email, TIP_NALOGA tip_naloga) {
-        Ime = ime;
-        Prezime = prezime;
-        Telefon = telefon;
-        Email = email;
-        this.tip_naloga = tip_naloga;
+    public Account(String Name, String Surname, String Phone, String email, ACCOUNT_TYPE ACCOUNT_TYPE) {
+        this.Name = Name;
+        this.Surname = Surname;
+        this.Phone = Phone;
+        this.Email = email;
+        this.ACCOUNT_TYPE = ACCOUNT_TYPE;
     }
 
-    public TIP_NALOGA getTip_naloga() {
-        return tip_naloga;
+    public ACCOUNT_TYPE getACCOUNT_TYPE() {
+        return ACCOUNT_TYPE;
     }
 
-    public void setTip_naloga(TIP_NALOGA tip_naloga) {
-        this.tip_naloga = tip_naloga;
+    public void setACCOUNT_TYPE(ACCOUNT_TYPE ACCOUNT_TYPE) {
+        this.ACCOUNT_TYPE = ACCOUNT_TYPE;
     }
 
     public Account(){}
 
-    public String getIme() {
-        return Ime;
+    public String getName() {
+        return Name;
     }
 
-    public void setIme(String ime) {
-        Ime = ime;
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
-    public String getPrezime() {
-        return Prezime;
+    public String getSurname() {
+        return Surname;
     }
 
-    public void setPrezime(String prezime) {
-        Prezime = prezime;
+    public void setSurname(String Surname) {
+        this.Surname = Surname;
     }
 
-    public String getTelefon() {
-        return Telefon;
+    public String getPhone() {
+        return Phone;
     }
 
-    public void setTelefon(String telefon) {
-        Telefon = telefon;
+    public void setPhone(String Phone) {
+        this.Phone = Phone;
     }
 
     public String getEmail() {
@@ -59,6 +59,6 @@ public class Account implements Serializable {
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.Email = email;
     }
 }

@@ -20,7 +20,7 @@
                 android:value="@integer/google_play_services_version"/>
         <meta-data
                 android:name="com.google.android.geo.API_KEY"
-                android:value="API_KEY"/>
+                android:value="AIzaSyBQJhnfGtRlWUy6bhHh5hb3JQcJv__aQSc"/>
         <activity android:name=".BookingRide">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"

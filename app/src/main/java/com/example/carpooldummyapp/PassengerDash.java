@@ -12,10 +12,15 @@ import java.util.ArrayList;
 
 public class PassengerDash extends AppCompatActivity {
 
+    public static final String DEPARTURE_LOCATION = "Departure Location";
+    public static final String ARRIVAL_LOCATION  = "Arrival Location";
+    public static final String DEPARTURE_TIME  = "Departure Time";
+    public static final String ARRIVAL_TIME  = "Arrival Time";
+
     private EditText Search_Bar;
-    private ListView Sve_Voznje_View;
-    private ArrayAdapter<Voznja> adapter;
-    public static ArrayList<Voznja> Sve_Voznje = new ArrayList<>();
+    private ListView All_Rides_View;
+    private ArrayAdapter<Ride> adapter;
+    public static ArrayList<Ride> All_Rides_Array = new ArrayList<>();
 
 
     @Override
@@ -24,30 +29,30 @@ public class PassengerDash extends AppCompatActivity {
         setContentView(R.layout.activity_passenger_dash);
 
         Search_Bar = findViewById(R.id.Search_Name_Bar);
-        Sve_Voznje_View = findViewById(R.id.Sve_Voznje);
+        All_Rides_View = findViewById(R.id.Rides);
 
-        if(Sve_Voznje.size() == 0) {
-            for (Account acc : Start.Nalozi) {
-                if (acc.getTip_naloga() == TIP_NALOGA.VOZAC) {
+        if(All_Rides_Array.size() == 0) {
+            for (Account acc : Start.All_Accounts) {
+                if (acc.getACCOUNT_TYPE() == ACCOUNT_TYPE.DRIVER) {
                     DriverAccount Temp_Vozac = (DriverAccount) acc;
-                    Sve_Voznje.addAll(Temp_Vozac.getTrenutne_Voznje());
+                    All_Rides_Array.addAll(Temp_Vozac.getScheduled_Rides());
                 }
             }
         }
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Sve_Voznje);
-        Sve_Voznje_View.setAdapter(adapter);
-        Sve_Voznje_View.smoothScrollToPosition(adapter.getCount());
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, All_Rides_Array);
+        All_Rides_View.setAdapter(adapter);
+        All_Rides_View.smoothScrollToPosition(adapter.getCount());
 
-        Sve_Voznje_View.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        All_Rides_View.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(PassengerDash.this, BookingRide.class);
-                intent.putExtra("Polazno Mesto", Sve_Voznje.get(position).getPolazno_Mesto());
-                intent.putExtra("Dolazno Mesto", Sve_Voznje.get(position).getDolazno_Mesto());
-                intent.putExtra("Polazno Vreme", Sve_Voznje.get(position).getVreme_Polaska());
-                intent.putExtra("Dolazno Vreme", Sve_Voznje.get(position).getVreme_Dolaska());
-                intent.putExtra("position", ((Voznja) parent.getAdapter().getItem(position)).get_ID());
+                intent.putExtra(DEPARTURE_LOCATION, All_Rides_Array.get(position).getDeparture_Location());
+                intent.putExtra(ARRIVAL_LOCATION, All_Rides_Array.get(position).getArrival_Location());
+                intent.putExtra(DEPARTURE_TIME, All_Rides_Array.get(position).getDeparture_Time());
+                intent.putExtra(ARRIVAL_TIME, All_Rides_Array.get(position).getArrival_Time());
+                intent.putExtra("position", ((Ride) parent.getAdapter().getItem(position)).get_ID());
                 startActivity(intent);
             }
         });

@@ -5,16 +5,16 @@
               android:orientation="vertical">
 
     <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
-              android:id="@+id/Modified_Mesto_Polaska" android:ems="10"
+              android:id="@+id/Modified_Departure_Location" android:ems="10"
               android:hint="Mesto Polaska"/>
     <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
-              android:id="@+id/Modified_Mesto_Dolaska" android:ems="10"
+              android:id="@+id/Modified_Arrival_Location" android:ems="10"
               android:hint="Mesto Dolaska"/>
     <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
-              android:id="@+id/Modified_Vreme_Polaska" android:ems="10"
+              android:id="@+id/Modified_Departure_Time" android:ems="10"
               android:hint="Vreme Polaska"/>
     <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
-              android:id="@+id/Modified_Vreme_Dolaska" android:ems="10"
+              android:id="@+id/Modified_Arrival_Time" android:ems="10"
               android:hint="Vreme Dolaska"/>
     <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:id="@+id/Modify_Button"
