@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent">
 
@@ -11,8 +10,10 @@
             android:inputType="textPersonName"
             android:hint="Name"
             android:ems="10"
-            android:id="@+id/New_Name" android:layout_marginStart="96dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="36dp"
+            android:id="@+id/New_Name"
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="36dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
     <EditText
             android:layout_width="wrap_content"
@@ -20,8 +21,10 @@
             android:inputType="textPersonName"
             android:hint="Lastname"
             android:ems="10"
-            android:id="@+id/New_Lastname" android:layout_marginStart="96dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="96dp"
+            android:id="@+id/New_Lastname"
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="96dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
     <EditText
             android:layout_width="wrap_content"
@@ -30,8 +33,10 @@
             android:ems="10"
             android:hint="Phone"
             android:id="@+id/New_Phone"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="96dp"
-            android:layout_marginTop="160dp" app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="160dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,19 +44,30 @@
             android:ems="10"
             android:hint="Em@il"
             android:id="@+id/New_Email"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="96dp"
-            android:layout_marginTop="224dp" app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="224dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="Register" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="160dp" android:layout_marginTop="340dp"
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="340dp"
             android:id="@+id/Register_Button"/>
     <Spinner
             android:layout_width="395dp"
             android:layout_height="wrap_content"
-            android:id="@+id/spinner1" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginBottom="416dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.0"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/New_Email"/>
+            android:id="@+id/spinner1"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="416dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@+id/New_Email"/>
 </android.support.constraint.ConstraintLayout>
