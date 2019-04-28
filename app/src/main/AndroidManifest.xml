@@ -12,7 +12,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".RideInProgress">
+        <activity android:name=".RideInProgress" android:screenOrientation="portrait">
         </activity>
 
         <meta-data
@@ -21,22 +21,22 @@
         <meta-data
                 android:name="com.google.android.geo.API_KEY"
                 android:value="AIzaSyBQJhnfGtRlWUy6bhHh5hb3JQcJv__aQSc"/>
-        <activity android:name=".BookingRide">
+        <activity android:name=".BookingRide" android:screenOrientation="portrait">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".PassengerDash" />
+                    android:value=".PassengerDash"/>
         </activity>
-        <activity android:name=".PassengerDash">
+        <activity android:name=".PassengerDash" android:screenOrientation="portrait">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".Start" />
+                    android:value=".Start"/>
         </activity>
-        <activity android:name=".DriverDash">
+        <activity android:name=".DriverDash" android:screenOrientation="portrait">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".Start" />
+                    android:value=".Start"/>
         </activity>
-        <activity android:name=".Start">
+        <activity android:name=".Start" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

@@ -60,11 +60,11 @@ public class Start extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.e("SPARTAAAAAAAAAAAAAAAAAA", String.valueOf(All_Accounts.size()));
         if(!Dummy_Data_Added){
-
             Add_Dummy_Data();
         }
 
         Log_In();
+        Create_New_User();
     }
 
     private boolean User_Exists(ArrayList<Account> list, String name_Query) {
@@ -107,7 +107,6 @@ public class Start extends AppCompatActivity {
                     }
                 } else {
                     Toast.makeText(Start.this, "Account Doesn't Exist", Toast.LENGTH_LONG).show();
-                    Create_New_User();
                 }
             }
         });
@@ -115,38 +114,45 @@ public class Start extends AppCompatActivity {
 
     private void Create_New_User() {
 
-        Start.this.setContentView(R.layout.register_new_account);
-        spinner = findViewById(R.id.spinner1);
-        String[] types = {"Driver", "Passenger"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_item, types);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner.setAdapter(adapter);
-
-        final EditText New_Account_Name = findViewById(R.id.New_Name);
-        final EditText New_Account_Lastname = findViewById(R.id.New_Lastname);
-        final EditText New_Account_Phone = findViewById(R.id.New_Phone);
-        final EditText New_Account_Email = findViewById(R.id.New_Email);
-        Button Register = findViewById(R.id.Register_Button);
-
-        Register.setOnClickListener(new View.OnClickListener() {
+        Button New_User_Button = findViewById(R.id.New_User_Button);
+        New_User_Button.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
+            public void onClick(View v){
+                Start.this.setContentView(R.layout.register_new_account);
+                spinner = findViewById(R.id.spinner1);
+                String[] types = {"Driver", "Passenger"};
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                        Start.this, android.R.layout.simple_spinner_item, types);
 
-                String name = New_Account_Name.getText().toString();
-                String lastname = New_Account_Lastname.getText().toString();
-                String phone = New_Account_Phone.getText().toString();
-                String Email = New_Account_Email.getText().toString();
-                if (spinner.getSelectedItemPosition() == 0) {
-                    showAddItemDialog(Start.this);
-                    Register_New_Driver(name, lastname, phone, Email, Car_model);
-                } else {
-                    Register_New_Passenger(name, lastname, phone, Email);
-                }
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                spinner.setAdapter(adapter);
+
+                final EditText New_Account_Name = findViewById(R.id.New_Name);
+                final EditText New_Account_Lastname = findViewById(R.id.New_Lastname);
+                final EditText New_Account_Phone = findViewById(R.id.New_Phone);
+                final EditText New_Account_Email = findViewById(R.id.New_Email);
+                Button Register = findViewById(R.id.Register_Button);
+
+                Register.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        String name = New_Account_Name.getText().toString();
+                        String lastname = New_Account_Lastname.getText().toString();
+                        String phone = New_Account_Phone.getText().toString();
+                        String Email = New_Account_Email.getText().toString();
+                        if (spinner.getSelectedItemPosition() == 0) {
+                            showAddItemDialog(Start.this);
+                            Register_New_Driver(name, lastname, phone, Email, Car_model);
+                        } else {
+                            Register_New_Passenger(name, lastname, phone, Email);
+                        }
+                    }
+                });
             }
         });
+
     }
 
     private void Register_New_Passenger(String name, String lastname, String email, String phone) {
