@@ -17,8 +17,7 @@ import java.util.List;
 
 public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Adapter.MyViewHolder> implements Filterable {
 
-    List<Ride> list;
-    List<Ride> List_Full;
+
     Context context;
 
     public Recycler_View_Adapter(List<Ride> list, Context context) {
@@ -71,6 +70,8 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
         return filteredList;
     }
 
+    List<Ride> list;
+    List<Ride> List_Full;
     private Filter filteredList = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {

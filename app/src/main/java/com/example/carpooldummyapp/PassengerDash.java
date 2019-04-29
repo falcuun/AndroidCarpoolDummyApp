@@ -20,8 +20,9 @@ public class PassengerDash extends AppCompatActivity {
     public static final String ARRIVAL_TIME = "Arrival Time";
 
     private EditText Search_Bar;
-    private ArrayAdapter<Ride> adapter;
     public static ArrayList<Ride> All_Rides_Array = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private Recycler_View_Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,20 +30,7 @@ public class PassengerDash extends AppCompatActivity {
         setContentView(R.layout.activity_passenger_dash);
 
         Search_Bar = findViewById(R.id.Search_Name_Bar);
-
-        if (All_Rides_Array.size() == 0) {
-            for (Account acc : Start.All_Accounts) {
-                if (acc.getACCOUNT_TYPE() == ACCOUNT_TYPE.DRIVER) {
-                    DriverAccount Temp_Vozac = (DriverAccount) acc;
-                    All_Rides_Array.addAll(Temp_Vozac.getScheduled_Rides());
-                }
-            }
-        }
-
-        RecyclerView recyclerView =  findViewById(R.id.recyclerview);
-        Recycler_View_Adapter adapter = new Recycler_View_Adapter(All_Rides_Array, getApplication());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView =  findViewById(R.id.recyclerview);
 
         Search_Bar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -60,5 +48,36 @@ public class PassengerDash extends AppCompatActivity {
 
             }
         });
+    }
+
+    void Populate_List(){
+        for (Account acc : Start.All_Accounts) {
+            if (acc.getACCOUNT_TYPE() == ACCOUNT_TYPE.DRIVER) {
+                DriverAccount Temp_Vozac = (DriverAccount) acc;
+                All_Rides_Array.addAll(Temp_Vozac.getScheduled_Rides());
+            }
+        }
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        adapter = null;
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        if (All_Rides_Array.size() == 0) {
+            Populate_List();
+        } else {
+            All_Rides_Array.clear();
+            Populate_List();
+        }
+
+        adapter = new Recycler_View_Adapter(All_Rides_Array, getApplication());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }
