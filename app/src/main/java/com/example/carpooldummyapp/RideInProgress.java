@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 public class RideInProgress extends AppCompatActivity {
 
+    DriverAccount driver;
+    Ride Selected_Ride;
     TextView rideProgress, rateRide;
     Button ratePlus, rateMinus;
     ProgressBar pb;
@@ -22,6 +24,16 @@ public class RideInProgress extends AppCompatActivity {
         pb = findViewById(R.id.loading_drive);
         ProgressBarAnimation anim = new ProgressBarAnimation(pb, 0, 500);
 
+        int position = getIntent().getIntExtra("position", 0);
+
+        for (Ride v : PassengerDash.All_Rides_Array){
+            if(v.get_ID() == position){
+                Selected_Ride = v;
+                driver = v.getDriver();
+            }
+        }
+
+        Toast.makeText(this, "" + driver.getAccount_type().name(), Toast.LENGTH_LONG).show();
 
         rideProgress = findViewById(R.id.rideProgressView);
         rateRide = findViewById(R.id.rateRideView);

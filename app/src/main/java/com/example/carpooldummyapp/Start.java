@@ -21,25 +21,25 @@ public class Start extends AppCompatActivity {
 
     static boolean Dummy_Data_Added = false;
 
-    void Add_Dummy_Data(){
-        DriverAccount driver1 = new DriverAccount("Vozac1", "Vozi1", "1", "vozac@1", "BMW", ACCOUNT_TYPE.DRIVER, 0);
-        DriverAccount driver2 = new DriverAccount("Vozac2", "Vozi2", "2", "vozac@2", "BMW", ACCOUNT_TYPE.DRIVER, 0);
-        DriverAccount driver3 = new DriverAccount("Vozac3", "Vozi3", "2", "vozac@2", "BMW", ACCOUNT_TYPE.DRIVER, 0);
-        DriverAccount driver4 = new DriverAccount("Vozac4", "Vozi4", "2", "vozac@2", "BMW", ACCOUNT_TYPE.DRIVER, 0);
-        DriverAccount driver5 = new DriverAccount("Vozac5", "Vozi5", "2", "vozac@2", "BMW", ACCOUNT_TYPE.DRIVER, 0);
-        DriverAccount driver6 = new DriverAccount("Vozac6", "Vozi6", "2", "vozac@2", "BMW", ACCOUNT_TYPE.DRIVER, 0);
-        DriverAccount driver7 = new DriverAccount("Vozac7", "Vozi7", "2", "vozac@2", "BMW", ACCOUNT_TYPE.DRIVER, 0);
+    void Add_Dummy_Data() {
+        DriverAccount driver1 = new DriverAccount("Driver1", "Drives1", "1", "driver@1", "BMW", 0, ACCOUNT_TYPE.DRIVER);
+        DriverAccount driver2 = new DriverAccount("Driver2", "Drives2", "2", "driver@2", "BMW", 0, ACCOUNT_TYPE.DRIVER);
+        DriverAccount driver3 = new DriverAccount("Driver3", "Drives3", "2", "driver@2", "BMW", 0, ACCOUNT_TYPE.DRIVER);
+        DriverAccount driver4 = new DriverAccount("Driver4", "Drives4", "2", "driver@2", "BMW", 0, ACCOUNT_TYPE.DRIVER);
+        DriverAccount driver5 = new DriverAccount("Driver5", "Drives5", "2", "driver@2", "BMW", 0, ACCOUNT_TYPE.DRIVER);
+        DriverAccount driver6 = new DriverAccount("Driver6", "Drives6", "2", "driver@2", "BMW", 0, ACCOUNT_TYPE.DRIVER);
+        DriverAccount driver7 = new DriverAccount("Driver7", "Drives7", "2", "driver@2", "BMW", 0, ACCOUNT_TYPE.DRIVER);
 
-        Account passenger1 = new PassengerAccount("Putnik1", "Putuje1", "2", "putnik@1", ACCOUNT_TYPE.PASSENGER);
+        Account passenger1 = new PassengerAccount("Passenger1", "Passenger1", "2", "passenger@1", 0, ACCOUNT_TYPE.PASSENGER);
 
-        driver1.Add_Ride(new Ride(ID,"Belgrade", "Novi Sad", "Danas", "Sutra", 2));
-        driver2.Add_Ride(new Ride(ID,"Paracin", "Nis", "Ponedeljak", "Utorak",3));
-        driver3.Add_Ride(new Ride(ID,"Cuprija", "Jagodina", "Subota", "Nedelja", 1));
-        driver4.Add_Ride(new Ride(ID,"Kraljevo", "Kragujevac", "Danas", "Nakosutra", 4));
-        driver5.Add_Ride(new Ride(ID,"Krusevac", "Presevo", "15:00", "20:00", 2));
-        driver6.Add_Ride(new Ride(ID,"Subotica", "Budapest", "08:00", "20:00", 1));
-        driver7.Add_Ride(new Ride(ID,"Kuca", "Poso", "Danas", "Kasnije Danas", 3));
-        driver7.Add_Ride(new Ride(ID,"Kuca", "Poso", "Danas", "Kasnije Danas", 3));
+        driver1.Add_Ride(new Ride(ID, "Belgrade", "Budapest", "12.02.2019", "12.02.2019", 2, driver1));
+        driver2.Add_Ride(new Ride(ID, "Budapest", "Bratislava", "13.02.2019", "13.02.2019", 3, driver2));
+        driver3.Add_Ride(new Ride(ID, "Bratislava", "Prague", "13.02.2019", "14.02.2019", 1, driver3));
+        driver4.Add_Ride(new Ride(ID, "Prague", "Berlin", "14.02.2019", "15.02.2019", 4, driver4));
+        driver5.Add_Ride(new Ride(ID, "Berlin", "Copenhagen", "16.02.2019", "17.02.2019", 2, driver5));
+        driver6.Add_Ride(new Ride(ID, "Copenhagen", "Stockholm", "17.02.2019", "19.02.2019", 1, driver6));
+        driver7.Add_Ride(new Ride(ID, "Stockholm", "Oslo", "25.03.2019", "26.03.2019", 3, driver7));
+        driver7.Add_Ride(new Ride(ID, "Oslo", "Belgrade", "12.11.2019", "13.11.2019", 3, driver7));
 
 
         All_Accounts.add(driver1);
@@ -59,7 +59,7 @@ public class Start extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.e("SPARTAAAAAAAAAAAAAAAAAA", String.valueOf(All_Accounts.size()));
-        if(!Dummy_Data_Added){
+        if (!Dummy_Data_Added) {
             Add_Dummy_Data();
         }
 
@@ -115,9 +115,9 @@ public class Start extends AppCompatActivity {
     private void Create_New_User() {
 
         Button New_User_Button = findViewById(R.id.New_User_Button);
-        New_User_Button.setOnClickListener(new View.OnClickListener(){
+        New_User_Button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 Start.this.setContentView(R.layout.register_new_account);
                 spinner = findViewById(R.id.spinner1);
                 String[] types = {"Driver", "Passenger"};
@@ -156,11 +156,11 @@ public class Start extends AppCompatActivity {
     }
 
     private void Register_New_Passenger(String name, String lastname, String email, String phone) {
-        All_Accounts.add(new PassengerAccount(name, lastname, phone, email, ACCOUNT_TYPE.PASSENGER));
+        All_Accounts.add(new PassengerAccount(name, lastname, phone, email, 0,ACCOUNT_TYPE.PASSENGER));
     }
 
     private void Register_New_Driver(String name, String lastname, String email, String phone, String model) {
-        All_Accounts.add(new DriverAccount(name, lastname, phone, email, model, ACCOUNT_TYPE.DRIVER, 0));
+        All_Accounts.add(new DriverAccount(name, lastname, phone, email, model,0, ACCOUNT_TYPE.DRIVER));
     }
 
     String Car_model;

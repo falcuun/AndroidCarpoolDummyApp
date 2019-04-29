@@ -97,8 +97,8 @@ public class DriverDash extends AppCompatActivity {
                 String vp = New_Departure_Time.getText().toString();
                 String vd = New_Arrival_Time.getText().toString();
                 int sm = Integer.parseInt(New_Free_Spaces.getText().toString());
-                Driver.Add_Ride(new Ride(Start.ID, mp, md, vp, vd, sm));
-                PassengerDash.All_Rides_Array.add(new Ride(Start.ID, mp, md, vp, vd, sm));
+                Driver.Add_Ride(new Ride(Start.ID, mp, md, vp, vd, sm, Driver));
+                PassengerDash.All_Rides_Array.add(new Ride(Start.ID, mp, md, vp, vd, sm, Driver));
                 arrayAdapter.notifyDataSetChanged();
                 Rides_List_View.smoothScrollToPosition(arrayAdapter.getCount());
                 Start.ID++;

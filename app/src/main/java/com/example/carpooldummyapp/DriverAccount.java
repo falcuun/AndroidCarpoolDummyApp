@@ -19,14 +19,11 @@ public class DriverAccount extends Account {
     }
 
 
-    public DriverAccount(String name, String surname, String phone, String Email, String Vehicle_Model, ACCOUNT_TYPE account_type, int Rating) {
-        super(name, surname, phone, Email, account_type);
+    public DriverAccount(String name, String surname, String phone, String Email, String Vehicle_Model, int Rating, ACCOUNT_TYPE account_type) {
+        super(name, surname, phone, Email, Rating, account_type);
         this.Vehicle_Model = Vehicle_Model;
         this.Rating = Rating;
     }
-
-    public DriverAccount(){}
-
 
     public void Add_Ride(Ride ride){
         Scheduled_Rides.add(ride);

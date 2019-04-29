@@ -10,14 +10,25 @@ public class Account implements Serializable {
     private String Surname;
     private String Phone;
     private String Email;
+    private int Rating;
+
+    public int getRating() {
+        return Rating / 5;
+    }
+
+    public void addRating(int rating) {
+        Rating += rating;
+    }
+
     ACCOUNT_TYPE ACCOUNT_TYPE;
 
-    public Account(String Name, String Surname, String Phone, String email, ACCOUNT_TYPE ACCOUNT_TYPE) {
+    public Account(String Name, String Surname, String Phone, String email, int rating, ACCOUNT_TYPE ACCOUNT_TYPE) {
         this.Name = Name;
         this.Surname = Surname;
         this.Phone = Phone;
         this.Email = email;
         this.ACCOUNT_TYPE = ACCOUNT_TYPE;
+        this.Rating = rating;
     }
 
     public ACCOUNT_TYPE getACCOUNT_TYPE() {

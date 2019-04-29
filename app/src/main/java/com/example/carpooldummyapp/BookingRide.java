@@ -40,10 +40,15 @@ public class BookingRide extends AppCompatActivity implements OnMapReadyCallback
         Cancel_Button = findViewById(R.id.Cancel_Button);
         Book_Button = findViewById(R.id.Book_Ride_Button);
 
-        Departure_Location.setText(getIntent().getStringExtra(PassengerDash.DEPARTURE_LOCATION));
-        Arrival_Location.setText(getIntent().getStringExtra(PassengerDash.ARRIVAL_LOCATION));
-        Departure_Time.setText(getIntent().getStringExtra(PassengerDash.DEPARTURE_TIME));
-        Arrival_Time.setText(getIntent().getStringExtra(PassengerDash.ARRIVAL_TIME));
+        String dep_loc = "Departing From: " + getIntent().getStringExtra(PassengerDash.DEPARTURE_LOCATION);
+        String arr_loc = "Arriving To: " + getIntent().getStringExtra(PassengerDash.ARRIVAL_LOCATION);
+        String dep_time = "Departing At: " + getIntent().getStringExtra(PassengerDash.DEPARTURE_TIME);
+        String arr_time = "Arriving At: " + getIntent().getStringExtra(PassengerDash.ARRIVAL_TIME);
+
+        Departure_Location.setText(dep_loc);
+        Arrival_Location.setText(arr_loc);
+        Departure_Time.setText(dep_time);
+        Arrival_Time.setText(arr_time);
 
         int position = getIntent().getIntExtra("position", 0);
 
@@ -52,10 +57,12 @@ public class BookingRide extends AppCompatActivity implements OnMapReadyCallback
                 Selected_Ride = v;
             }
         }
+
         Book_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(BookingRide.this, RideInProgress.class);
+                i.putExtra("position", position);
                 startActivity(i);
             }
         });
