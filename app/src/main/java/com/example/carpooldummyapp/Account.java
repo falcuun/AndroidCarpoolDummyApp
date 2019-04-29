@@ -10,14 +10,17 @@ public class Account implements Serializable {
     private String Surname;
     private String Phone;
     private String Email;
-    private int Rating;
+    private float Rating;
+    private long Times_Rated = 0;
 
-    public int getRating() {
-        return Rating / 5;
+    public float getRating() {
+
+        return (Rating / Times_Rated);
     }
 
-    public void addRating(int rating) {
+    public void addRating(float rating) {
         Rating += rating;
+        Times_Rated++;
     }
 
     ACCOUNT_TYPE ACCOUNT_TYPE;

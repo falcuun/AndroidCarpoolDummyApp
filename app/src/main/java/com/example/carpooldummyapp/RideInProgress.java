@@ -5,23 +5,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 
 public class RideInProgress extends AppCompatActivity {
 
     DriverAccount driver;
     Ride Selected_Ride;
+    RatingBar rateBar;
     TextView rideProgress, rateRide;
-    Button ratePlus, rateMinus;
     ProgressBar pb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ride_in_progress);
         pb = findViewById(R.id.loading_drive);
+        rateBar = findViewById(R.id.rateBar);
+        rateBar.setRating(3);
+        rateBar.setStepSize(1.0f);
         ProgressBarAnimation anim = new ProgressBarAnimation(pb, 0, 500);
 
         int position = getIntent().getIntExtra("position", 0);
@@ -33,30 +33,18 @@ public class RideInProgress extends AppCompatActivity {
             }
         }
 
-        Toast.makeText(this, "" + driver.getAccount_type().name(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "" + driver.getName(), Toast.LENGTH_LONG).show();
 
         rideProgress = findViewById(R.id.rideProgressView);
         rateRide = findViewById(R.id.rateRideView);
-
-        ratePlus = findViewById(R.id.RatePlus);
-        rateMinus = findViewById(R.id.RateMinus);
-
         rateRide.setVisibility(View.INVISIBLE);
-        ratePlus.setVisibility(View.INVISIBLE);
-        rateMinus.setVisibility(View.INVISIBLE);
+        rateBar.setVisibility(View.INVISIBLE);
+        rateBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                driver.addRating(rating);
+                Toast.makeText(RideInProgress.this, "" + driver.getRating(), Toast.LENGTH_LONG).show();
 
-        ratePlus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(RideInProgress.this, "You Rate this Ride Good", Toast.LENGTH_LONG).show();
-                finish();
-            }
-        });
-        rateMinus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(RideInProgress.this, "You Rate this Ride Bad", Toast.LENGTH_LONG).show();
-                finish();
             }
         });
 
@@ -72,9 +60,7 @@ public class RideInProgress extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 rateRide.setVisibility(View.VISIBLE);
-                ratePlus.setVisibility(View.VISIBLE);
-                rateMinus.setVisibility(View.VISIBLE);
-
+                rateBar.setVisibility(View.VISIBLE);
                 rideProgress.setVisibility(View.INVISIBLE);
                 pb.setVisibility(View.INVISIBLE);
             }
@@ -92,7 +78,7 @@ public class RideInProgress extends AppCompatActivity {
         private float from;
         private float to;
 
-        public ProgressBarAnimation(ProgressBar progressBar, float from, float to) {
+        ProgressBarAnimation(ProgressBar progressBar, float from, float to) {
             super();
             this.progressBar = progressBar;
             this.from = from;
