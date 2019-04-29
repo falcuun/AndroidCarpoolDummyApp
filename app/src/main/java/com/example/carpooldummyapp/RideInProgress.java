@@ -12,14 +12,15 @@ public class RideInProgress extends AppCompatActivity {
     DriverAccount driver;
     Ride Selected_Ride;
     RatingBar rateBar;
-    TextView rideProgress, rateRide;
+    TextView rideProgress, rateRide, leaveComment;
+    EditText Input_Comment;
     ProgressBar pb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ride_in_progress);
-        pb = findViewById(R.id.loading_drive);
-        rateBar = findViewById(R.id.rateBar);
+        init();
+
         rateBar.setRating(3);
         rateBar.setStepSize(1.0f);
         ProgressBarAnimation anim = new ProgressBarAnimation(pb, 0, 500);
@@ -35,10 +36,6 @@ public class RideInProgress extends AppCompatActivity {
 
         Toast.makeText(this, "" + driver.getName(), Toast.LENGTH_LONG).show();
 
-        rideProgress = findViewById(R.id.rideProgressView);
-        rateRide = findViewById(R.id.rateRideView);
-        rateRide.setVisibility(View.INVISIBLE);
-        rateBar.setVisibility(View.INVISIBLE);
         rateBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
@@ -61,6 +58,8 @@ public class RideInProgress extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 rateRide.setVisibility(View.VISIBLE);
                 rateBar.setVisibility(View.VISIBLE);
+                leaveComment.setVisibility(View.VISIBLE);
+                Input_Comment.setVisibility(View.VISIBLE);
                 rideProgress.setVisibility(View.INVISIBLE);
                 pb.setVisibility(View.INVISIBLE);
             }
@@ -92,5 +91,19 @@ public class RideInProgress extends AppCompatActivity {
             progressBar.setProgress((int) value);
         }
 
+    }
+
+    private void init(){
+        pb = findViewById(R.id.loading_drive);
+        rateBar = findViewById(R.id.rateBar);
+        leaveComment = findViewById(R.id.leave_comment);
+        Input_Comment = findViewById(R.id.input_comment);
+        rideProgress = findViewById(R.id.rideProgressView);
+        rateRide = findViewById(R.id.rateRideView);
+
+        leaveComment.setVisibility(View.INVISIBLE);
+        Input_Comment.setVisibility(View.INVISIBLE);
+        rateRide.setVisibility(View.INVISIBLE);
+        rateBar.setVisibility(View.INVISIBLE);
     }
 }

@@ -16,6 +16,7 @@ public class Start extends AppCompatActivity {
     static ArrayList<Account> All_Accounts = new ArrayList<>();
     Spinner spinner;
     String Acc_Name;
+    String Car_model;
     ACCOUNT_TYPE type;
     public static int ID = 0;
 
@@ -163,7 +164,6 @@ public class Start extends AppCompatActivity {
         All_Accounts.add(new DriverAccount(name, lastname, phone, email, model,0, ACCOUNT_TYPE.DRIVER));
     }
 
-    String Car_model;
 
     private void showAddItemDialog(Context c) {
         final EditText taskEditText = new EditText(c);

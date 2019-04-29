@@ -29,48 +29,48 @@ public class Ride implements Serializable {
         this.driver = driver;
     }
 
-    public DriverAccount getDriver(){
+    DriverAccount getDriver(){
         return this.driver;
     }
 
-    public int get_ID() {
+    int get_ID() {
         return _ID;
     }
 
-    public void set_ID(int _ID) {
+    void set_ID(int _ID) {
         this._ID = _ID;
     }
 
 
-    public String getDeparture_Time() {
+    String getDeparture_Time() {
         return Departure_Time;
     }
 
-    public void setDeparture_Time(String Departure_Time) {
+    void setDeparture_Time(String Departure_Time) {
         this.Departure_Time = Departure_Time;
     }
 
-    public String getArrival_Time() {
+    String getArrival_Time() {
         return Arrival_Time;
     }
 
-    public void setArrival_Time(String Arrival_Time) {
+    void setArrival_Time(String Arrival_Time) {
         this.Arrival_Time = Arrival_Time;
     }
 
-    public String getDeparture_Location() {
+    String getDeparture_Location() {
         return Departure_Location;
     }
 
-    public void setDeparture_Location(String Departure_Location) {
+    void setDeparture_Location(String Departure_Location) {
         this.Departure_Location = Departure_Location;
     }
 
-    public String getArrival_Location() {
+    String getArrival_Location() {
         return Arrival_Location;
     }
 
-    public void setArrival_Location(String Arrival_Location) {
+    void setArrival_Location(String Arrival_Location) {
         this.Arrival_Location = Arrival_Location;
     }
 
