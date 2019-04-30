@@ -23,13 +23,13 @@ public class Start extends AppCompatActivity {
     static boolean Dummy_Data_Added = false;
 
     void Add_Dummy_Data() {
-        DriverAccount driver1 = new DriverAccount("Driver1", "Drives1", "1", "driver@1", "BMW", 1.5f, ACCOUNT_TYPE.DRIVER);
-        DriverAccount driver2 = new DriverAccount("Driver2", "Drives2", "2", "driver@2", "BMW", 3.7f, ACCOUNT_TYPE.DRIVER);
-        DriverAccount driver3 = new DriverAccount("Driver3", "Drives3", "2", "driver@2", "BMW", 5, ACCOUNT_TYPE.DRIVER);
-        DriverAccount driver4 = new DriverAccount("Driver4", "Drives4", "2", "driver@2", "BMW", 1.2f, ACCOUNT_TYPE.DRIVER);
-        DriverAccount driver5 = new DriverAccount("Driver5", "Drives5", "2", "driver@2", "BMW", 4.7f, ACCOUNT_TYPE.DRIVER);
-        DriverAccount driver6 = new DriverAccount("Driver6", "Drives6", "2", "driver@2", "BMW", 0, ACCOUNT_TYPE.DRIVER);
-        DriverAccount driver7 = new DriverAccount("Driver7", "Drives7", "2", "driver@2", "BMW", 0, ACCOUNT_TYPE.DRIVER);
+        DriverAccount driver1 = new DriverAccount("Bradley", "Cooper", "1", "driver@1", "BMW", 1.5f, ACCOUNT_TYPE.DRIVER, 2);
+        DriverAccount driver2 = new DriverAccount("John", "Cena", "2", "driver@2", "BMW", 3.7f, ACCOUNT_TYPE.DRIVER, 3);
+        DriverAccount driver3 = new DriverAccount("Donald", "Trump", "2", "driver@2", "BMW", 5, ACCOUNT_TYPE.DRIVER,1);
+        DriverAccount driver4 = new DriverAccount("Driver4", "Drives4", "2", "driver@2", "BMW", 1.2f, ACCOUNT_TYPE.DRIVER,3);
+        DriverAccount driver5 = new DriverAccount("Driver5", "Drives5", "2", "driver@2", "BMW", 4.7f, ACCOUNT_TYPE.DRIVER,4);
+        DriverAccount driver6 = new DriverAccount("Driver6", "Drives6", "2", "driver@2", "BMW", 0, ACCOUNT_TYPE.DRIVER,1);
+        DriverAccount driver7 = new DriverAccount("Driver7", "Drives7", "2", "driver@2", "BMW", 0, ACCOUNT_TYPE.DRIVER, 1);
 
         Account passenger1 = new PassengerAccount("Passenger1", "Passenger1", "2", "passenger@1", 0, ACCOUNT_TYPE.PASSENGER);
 
@@ -145,7 +145,7 @@ public class Start extends AppCompatActivity {
                         String Email = New_Account_Email.getText().toString();
                         if (spinner.getSelectedItemPosition() == 0) {
                             showAddItemDialog(Start.this);
-                            Register_New_Driver(name, lastname, phone, Email, Car_model);
+                            Register_New_Driver(name, lastname, phone, Email, Car_model, 3);
                         } else {
                             Register_New_Passenger(name, lastname, phone, Email);
                         }
@@ -160,8 +160,8 @@ public class Start extends AppCompatActivity {
         All_Accounts.add(new PassengerAccount(name, lastname, phone, email, 0,ACCOUNT_TYPE.PASSENGER));
     }
 
-    private void Register_New_Driver(String name, String lastname, String email, String phone, String model) {
-        All_Accounts.add(new DriverAccount(name, lastname, phone, email, model,0, ACCOUNT_TYPE.DRIVER));
+    private void Register_New_Driver(String name, String lastname, String email, String phone, String model, int free_spaces) {
+        All_Accounts.add(new DriverAccount(name, lastname, phone, email, model,0, ACCOUNT_TYPE.DRIVER, free_spaces));
     }
 
 

@@ -20,7 +20,7 @@ public class RideInProgress extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ride_in_progress);
         init();
-
+        driver.Reduce_Seats();
         rateBar.setStepSize(0.1f);
         ProgressBarAnimation anim = new ProgressBarAnimation(pb, 0, 500);
 

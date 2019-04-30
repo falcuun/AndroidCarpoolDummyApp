@@ -2,6 +2,7 @@ package com.example.carpooldummyapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -82,13 +83,13 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
             FilterResults results = new FilterResults();
             List<Ride> filterList = new ArrayList<>();
 
-            if(constraint == null || constraint.length() == 0){
+            if (constraint == null || constraint.length() == 0) {
                 filterList.addAll(List_Full);
-            }else {
+            } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
-                for (Ride r : List_Full){
-                    if(r.toString().toLowerCase().contains(filterPattern)){
+                for (Ride r : List_Full) {
+                    if (r.toString().toLowerCase().contains(filterPattern)) {
                         filterList.add(r);
                     }
                 }
@@ -100,7 +101,10 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             list.clear();
-            list.addAll((List)results.values);
+            list.addAll((List) results.values);
+            if (list.size() == 0) {
+                Toast.makeText(context, "There is no result matching that search", Toast.LENGTH_SHORT).show();
+            }
             notifyDataSetChanged();
         }
     };
@@ -120,7 +124,6 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
             arrival_time = itemView.findViewById(R.id.arriving_time);
             driver_name = itemView.findViewById(R.id.name_field);
             display_rating = itemView.findViewById(R.id.display_rating);
-
             imageView = itemView.findViewById(R.id.imageView);
         }
     }
