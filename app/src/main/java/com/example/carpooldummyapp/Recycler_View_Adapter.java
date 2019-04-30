@@ -113,6 +113,7 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
         CardView cv;
         TextView departure_location, arrival_location, departure_time, arrival_time, driver_name;
         RatingBar display_rating;
+        ProgressBar progressbar;
         ImageView imageView;
 
         MyViewHolder(View itemView) {
@@ -125,6 +126,9 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
             driver_name = itemView.findViewById(R.id.name_field);
             display_rating = itemView.findViewById(R.id.display_rating);
             imageView = itemView.findViewById(R.id.imageView);
+            progressbar = itemView.findViewById(R.id.progressbar);
+
+            progressbar.setProgress(progressbar.getMax());
         }
     }
 }
