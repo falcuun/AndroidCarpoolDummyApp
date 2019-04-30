@@ -23,11 +23,11 @@ public class Start extends AppCompatActivity {
     static boolean Dummy_Data_Added = false;
 
     void Add_Dummy_Data() {
-        DriverAccount driver1 = new DriverAccount("Driver1", "Drives1", "1", "driver@1", "BMW", 0, ACCOUNT_TYPE.DRIVER);
-        DriverAccount driver2 = new DriverAccount("Driver2", "Drives2", "2", "driver@2", "BMW", 0, ACCOUNT_TYPE.DRIVER);
-        DriverAccount driver3 = new DriverAccount("Driver3", "Drives3", "2", "driver@2", "BMW", 0, ACCOUNT_TYPE.DRIVER);
-        DriverAccount driver4 = new DriverAccount("Driver4", "Drives4", "2", "driver@2", "BMW", 0, ACCOUNT_TYPE.DRIVER);
-        DriverAccount driver5 = new DriverAccount("Driver5", "Drives5", "2", "driver@2", "BMW", 0, ACCOUNT_TYPE.DRIVER);
+        DriverAccount driver1 = new DriverAccount("Driver1", "Drives1", "1", "driver@1", "BMW", 1.5f, ACCOUNT_TYPE.DRIVER);
+        DriverAccount driver2 = new DriverAccount("Driver2", "Drives2", "2", "driver@2", "BMW", 3.7f, ACCOUNT_TYPE.DRIVER);
+        DriverAccount driver3 = new DriverAccount("Driver3", "Drives3", "2", "driver@2", "BMW", 5, ACCOUNT_TYPE.DRIVER);
+        DriverAccount driver4 = new DriverAccount("Driver4", "Drives4", "2", "driver@2", "BMW", 1.2f, ACCOUNT_TYPE.DRIVER);
+        DriverAccount driver5 = new DriverAccount("Driver5", "Drives5", "2", "driver@2", "BMW", 4.7f, ACCOUNT_TYPE.DRIVER);
         DriverAccount driver6 = new DriverAccount("Driver6", "Drives6", "2", "driver@2", "BMW", 0, ACCOUNT_TYPE.DRIVER);
         DriverAccount driver7 = new DriverAccount("Driver7", "Drives7", "2", "driver@2", "BMW", 0, ACCOUNT_TYPE.DRIVER);
 

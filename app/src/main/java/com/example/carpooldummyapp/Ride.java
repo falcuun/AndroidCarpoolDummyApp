@@ -25,11 +25,11 @@ public class Ride implements Serializable {
         Start.ID++;
     }
 
-    public void setDriver( DriverAccount driver){
+    public void setDriver(DriverAccount driver) {
         this.driver = driver;
     }
 
-    DriverAccount getDriver(){
+    DriverAccount getDriver() {
         return this.driver;
     }
 
@@ -76,7 +76,7 @@ public class Ride implements Serializable {
 
     @Override
     public String toString() {
-        return "Departure Location is: " + Departure_Location + '\n' + "Arrival Location is: " + Arrival_Location + '\n'
-                + "Departure Time is: " + Departure_Time + '\n' + "Arrival Time is: " + Arrival_Time + '\n';
+        return Departure_Location + '\n' + Arrival_Location + '\n'
+                + Departure_Time + '\n' + Arrival_Time + '\n';
     }
 }

@@ -8,7 +8,7 @@ public class DriverAccount extends Account {
     private ArrayList<Ride> Scheduled_Rides = new ArrayList<>();
 
     private ACCOUNT_TYPE account_type = ACCOUNT_TYPE.DRIVER;
-    private int Rating = 0;
+    private float Rating = 0;
     
     public ACCOUNT_TYPE getAccount_type() {
         return account_type;
@@ -19,7 +19,7 @@ public class DriverAccount extends Account {
     }
 
 
-    public DriverAccount(String name, String surname, String phone, String Email, String Vehicle_Model, int Rating, ACCOUNT_TYPE account_type) {
+    public DriverAccount(String name, String surname, String phone, String Email, String Vehicle_Model, float Rating, ACCOUNT_TYPE account_type) {
         super(name, surname, phone, Email, Rating, account_type);
         this.Vehicle_Model = Vehicle_Model;
         this.Rating = Rating;
@@ -43,14 +43,5 @@ public class DriverAccount extends Account {
 
     public void setScheduled_Rides(ArrayList<Ride> Scheduled_Rides) {
         Scheduled_Rides = Scheduled_Rides;
-    }
-
-
-    public void Good_Rating(){
-        Rating += 1;
-    }
-
-    public void Bad_Rating(){
-        Rating -= 1;
     }
 }

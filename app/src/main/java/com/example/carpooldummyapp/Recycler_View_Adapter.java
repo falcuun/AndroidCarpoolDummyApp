@@ -7,18 +7,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Adapter.MyViewHolder> implements Filterable {
 
-
-    Context context;
+    private Context context;
 
     public Recycler_View_Adapter(List<Ride> list, Context context) {
         this.list = list;
@@ -37,8 +33,16 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
-        holder.title.setText(list.get(position).getDeparture_Location());
-        holder.description.setText(list.get(position).getArrival_Location());
+        holder.departure_location.setText(list.get(position).getDeparture_Location());
+        holder.departure_time.setText(list.get(position).getDeparture_Time());
+
+        holder.arrival_location.setText(list.get(position).getArrival_Location());
+        holder.arrival_time.setText(list.get(position).getArrival_Time());
+
+        holder.driver_name.setText(list.get(position).getDriver().getName());
+        holder.display_rating.setRating(list.get(position).getDriver().getRating());
+
+
         holder.imageView.setImageResource(R.drawable.bmw);
 
         holder.cv.setOnClickListener(new View.OnClickListener() {
@@ -103,15 +107,20 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
-        TextView title;
-        TextView description;
+        TextView departure_location, arrival_location, departure_time, arrival_time, driver_name;
+        RatingBar display_rating;
         ImageView imageView;
 
         MyViewHolder(View itemView) {
             super(itemView);
             cv = itemView.findViewById(R.id.cardView);
-            title = itemView.findViewById(R.id.title);
-            description = itemView.findViewById(R.id.description);
+            departure_location = itemView.findViewById(R.id.departing_location);
+            arrival_location = itemView.findViewById(R.id.arriving_location);
+            departure_time = itemView.findViewById(R.id.departing_time);
+            arrival_time = itemView.findViewById(R.id.arriving_time);
+            driver_name = itemView.findViewById(R.id.name_field);
+            display_rating = itemView.findViewById(R.id.display_rating);
+
             imageView = itemView.findViewById(R.id.imageView);
         }
     }

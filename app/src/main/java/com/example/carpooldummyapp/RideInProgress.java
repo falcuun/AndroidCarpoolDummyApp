@@ -21,8 +21,7 @@ public class RideInProgress extends AppCompatActivity {
         setContentView(R.layout.activity_ride_in_progress);
         init();
 
-        rateBar.setRating(3);
-        rateBar.setStepSize(1.0f);
+        rateBar.setStepSize(0.1f);
         ProgressBarAnimation anim = new ProgressBarAnimation(pb, 0, 500);
 
         int position = getIntent().getIntExtra("position", 0);
@@ -33,7 +32,7 @@ public class RideInProgress extends AppCompatActivity {
                 driver = v.getDriver();
             }
         }
-
+        rateBar.setRating(driver.getRating());
         Toast.makeText(this, "" + driver.getName(), Toast.LENGTH_LONG).show();
 
         rateBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {

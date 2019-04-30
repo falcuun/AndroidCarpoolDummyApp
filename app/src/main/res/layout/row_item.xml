@@ -10,30 +10,71 @@
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/r_layout"
             android:padding="16dp">
 
         <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:maxWidth="150dp"/>
+                android:maxWidth="150dp" android:layout_alignParentStart="true"
+                android:layout_marginStart="0dp"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/name_field"
+                  android:textSize="22sp"
+                  android:text="Driver Name"
+                  android:layout_toEndOf="@+id/imageView"/>
+
+        <RatingBar android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:numStars="5"
+                   android:id="@+id/display_rating"
+                   android:isIndicator="true"
+                   android:stepSize="0.1"
+                   style="?android:attr/ratingBarStyleSmall"
+                   android:layout_alignParentEnd="true"
+                   android:layout_marginTop="16dp"
+                   android:layout_alignParentTop="true"/>
+
 
         <TextView
-                android:id="@+id/title"
+                android:id="@+id/departing_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_toEndOf="@+id/imageView"
-                android:text="Title"
-                android:textSize="30sp" />
+                android:text="Departure"
+                android:textSize="20sp"
+                android:layout_marginTop="70dp"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/arriving_location"
+                  android:layout_alignParentEnd="true"
+                  android:textSize="20sp"
+                  android:text="Destination"
+                  android:layout_marginTop="70dp"/>
+
 
         <TextView
-                android:id="@+id/description"
+                android:id="@+id/departing_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/title"
                 android:layout_toEndOf="@+id/imageView"
-                android:text="Description" />
+                android:text="01.01.1990"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="44dp"/>
+
+        <TextView
+                android:id="@+id/arriving_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="01.01.1990"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="44dp"/>
 
     </RelativeLayout>
 
