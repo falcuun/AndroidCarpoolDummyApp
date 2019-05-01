@@ -46,11 +46,7 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
         holder.driver_name.setText(list.get(position).getDriver().getName());
         holder.display_rating.setRating(list.get(position).getDriver().getRating());
 
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        options.inSampleSize = 3;
-        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.bmw, options);
-        holder.imageView.setImageBitmap(bitmap);
+        //holder.imageView.setImageResource(R.drawable.bmw);
 
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,31 +130,6 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
             imageView = itemView.findViewById(R.id.imageView);
             //progressbar = itemView.findViewById(R.id.progressbar);
             //progressbar.setProgress(progressbar.getMax());
-        }
-    }
-
-    private static class LongOperation extends AsyncTask<ImageView, Void, String> {
-
-
-        @Override
-        protected String doInBackground(ImageView... imageViews) {
-
-            imageViews[0].setImageResource(R.drawable.bmw);
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-        }
-
-
-        @Override
-        protected void onPreExecute() {
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
         }
     }
 }
