@@ -46,8 +46,6 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
         holder.driver_name.setText(list.get(position).getDriver().getName());
         holder.display_rating.setRating(list.get(position).getDriver().getRating());
 
-        //holder.imageView.setImageResource(R.drawable.bmw);
-
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,8 +113,6 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
         CardView cv;
         TextView departure_location, arrival_location, departure_time, arrival_time, driver_name;
         RatingBar display_rating;
-        ProgressBar progressbar;
-        ImageView imageView;
 
         MyViewHolder(View itemView) {
             super(itemView);
@@ -127,9 +123,6 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
             arrival_time = itemView.findViewById(R.id.arriving_time);
             driver_name = itemView.findViewById(R.id.name_field);
             display_rating = itemView.findViewById(R.id.display_rating);
-            imageView = itemView.findViewById(R.id.imageView);
-            //progressbar = itemView.findViewById(R.id.progressbar);
-            //progressbar.setProgress(progressbar.getMax());
         }
     }
 }
