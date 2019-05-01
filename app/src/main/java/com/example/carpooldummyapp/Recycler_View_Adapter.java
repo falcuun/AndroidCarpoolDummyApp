@@ -2,7 +2,10 @@ package com.example.carpooldummyapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -43,7 +46,11 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
         holder.driver_name.setText(list.get(position).getDriver().getName());
         holder.display_rating.setRating(list.get(position).getDriver().getRating());
 
-        holder.imageView.setImageResource(R.drawable.bmw);
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        options.inSampleSize = 3;
+        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.bmw, options);
+        holder.imageView.setImageBitmap(bitmap);
 
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,8 +81,8 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
         return filteredList;
     }
 
-    List<Ride> list;
-    List<Ride> List_Full;
+    private List<Ride> list;
+    private List<Ride> List_Full;
     private Filter filteredList = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
@@ -125,10 +132,36 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
             driver_name = itemView.findViewById(R.id.name_field);
             display_rating = itemView.findViewById(R.id.display_rating);
             imageView = itemView.findViewById(R.id.imageView);
-            progressbar = itemView.findViewById(R.id.progressbar);
+            //progressbar = itemView.findViewById(R.id.progressbar);
+            //progressbar.setProgress(progressbar.getMax());
+        }
+    }
 
-            progressbar.setProgress(progressbar.getMax());
+    private static class LongOperation extends AsyncTask<ImageView, Void, String> {
+
+
+        @Override
+        protected String doInBackground(ImageView... imageViews) {
+
+            imageViews[0].setImageResource(R.drawable.bmw);
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+        }
+
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
         }
     }
 }
+
+
 
