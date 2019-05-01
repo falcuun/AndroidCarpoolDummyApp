@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/road"
+        android:background="@mipmap/road"
         tools:context=".Start">
 
     <ImageView android:layout_width="match_parent"
@@ -20,7 +20,7 @@
                app:layout_constraintEnd_toEndOf="parent"
                app:layout_constraintBottom_toBottomOf="parent"
                app:layout_constraintHorizontal_bias="0.0"
-               app:layout_constraintVertical_bias="0.082"/>
+               app:layout_constraintVertical_bias="0.082" android:id="@+id/imageView2"/>
 
     <EditText android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -29,17 +29,10 @@
               android:textAlignment="center"
               android:hint="Enter Name"
               android:inputType="text"
-              android:id="@+id/Input_Name"
-              android:layout_marginEnd="8dp"
-              android:layout_marginStart="16dp"
-              android:layout_marginTop="8dp"
-              android:layout_marginBottom="8dp"
-              app:layout_constraintHorizontal_bias="0.0"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintTop_toTopOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintVertical_bias="0.64"/>
+              android:id="@+id/Input_Name" android:layout_marginBottom="8dp"
+              app:layout_constraintBottom_toTopOf="@+id/Input_Password" app:layout_constraintStart_toStartOf="parent"
+              android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+              android:layout_marginEnd="8dp"/>
 
     <EditText android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -47,36 +40,23 @@
               android:textColor="@color/white"
               android:textAlignment="center"
               android:hint="Enter Password"
-              android:inputType="text"
-              android:id="@+id/Input_Password"
-              android:layout_marginStart="16dp"
-              android:layout_marginEnd="8dp"
-              android:layout_marginTop="8dp"
-              android:layout_marginBottom="8dp"
-              app:layout_constraintHorizontal_bias="0.0"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintTop_toTopOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintVertical_bias="0.713"/>
+              android:inputType="textPassword"
+              android:id="@+id/Input_Password" android:layout_marginBottom="8dp"
+              app:layout_constraintBottom_toTopOf="@+id/Login_Button" app:layout_constraintStart_toStartOf="parent"
+              android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+              android:layout_marginEnd="8dp"/>
 
     <Button android:layout_width="106dp"
             android:layout_height="41dp"
             android:textStyle="italic"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textColor="@color/white"
             android:background="@drawable/rounded_button"
             android:id="@+id/Login_Button"
-            android:text="Sign Up"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.796"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"/>
+            android:text="Sign Up" android:layout_marginBottom="48dp"
+            app:layout_constraintBottom_toTopOf="@+id/New_User_Button" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.498"/>
 
     <Button
             android:text="Don't Have an Accout?"
@@ -85,18 +65,13 @@
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:textSize="18sp"
+            android:textSize="14sp"
             style="?android:attr/borderlessButtonStyle"
             android:id="@+id/New_User_Button"
             android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.988"/>
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent"/>
 
 
 </android.support.constraint.ConstraintLayout>
