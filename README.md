@@ -1,5 +1,7 @@
 # AndroidCarpoolDummyApp
 
+# App Only test in Bluestacks so far!!! 1980x1080 Nougat 7.1 Android Version. Any UI imperfections you might experience on your phone are due to all being tested on a bit bigger screen.
+
 Android application simulating a Carpool Application by using local memory to store data and allow user to do some basic actions you would find in an carpool app, such as:
   -Registering
   -Logging In

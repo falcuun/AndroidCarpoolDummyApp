@@ -43,7 +43,6 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
         holder.driver_name.setText(list.get(position).getDriver().getName());
         holder.display_rating.setRating(list.get(position).getDriver().getRating());
 
-
         holder.imageView.setImageResource(R.drawable.bmw);
 
         holder.cv.setOnClickListener(new View.OnClickListener() {
