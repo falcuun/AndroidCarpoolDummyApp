@@ -13,15 +13,19 @@ import android.widget.*;
 import java.util.ArrayList;
 
 public class Start extends AppCompatActivity {
-    static ArrayList<Account> All_Accounts = new ArrayList<>();
-    Spinner spinner;
-    String Acc_Name;
-    String Car_model;
-    ACCOUNT_TYPE type;
-    public static int ID = 0;
+    static ArrayList<Account> All_Accounts = new ArrayList<>(); // Global List to hold all the accounts
+    Spinner spinner; // Reference to the Spinner in Register Screen
+    String Acc_Name; // Account Name
+    String Car_model; // Car Model
+    ACCOUNT_TYPE type; // Type Of Account Reference
+    public static int ID = 0; // ID Of account for easier referencing
 
-    static boolean Dummy_Data_Added = false;
+    static boolean Dummy_Data_Added = false; // State to check if the demonstration list has been populated
 
+
+    /*
+    Manually making accounts in order to populate the list of all accounts and test the application
+     */
     void Add_Dummy_Data() {
         DriverAccount driver1 = new DriverAccount("Bradley", "Cooper", "1", "driver@1", "BMW", 1.5f, ACCOUNT_TYPE.DRIVER, 2);
         DriverAccount driver2 = new DriverAccount("John", "Cena", "2", "driver@2", "BMW", 3.7f, ACCOUNT_TYPE.DRIVER, 3);
@@ -59,7 +63,7 @@ public class Start extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e("SPARTAAAAAAAAAAAAAAAAAA", String.valueOf(All_Accounts.size()));
+        Log.e("All Accounts", String.valueOf(All_Accounts.size()));
         if (!Dummy_Data_Added) {
             Add_Dummy_Data();
         }
@@ -68,6 +72,10 @@ public class Start extends AppCompatActivity {
         Create_New_User();
     }
 
+    /*
+    A function that will check if the user, with a given name, exists in the list of all of other accounts
+    Method returns TRUE if the user is found and FALSE if not
+     */
     private boolean User_Exists(ArrayList<Account> list, String name_Query) {
         for (Account acc : list) {
             if (acc.getName().equalsIgnoreCase(name_Query)) {
@@ -79,103 +87,115 @@ public class Start extends AppCompatActivity {
         return false;
     }
 
+    /*
+    A Function that will start Driver Dashboard Activity
+     */
     private void Driver_Dash() {
         Intent intent = new Intent(this, DriverDash.class);
         intent.putExtra("Account", Acc_Name);
         startActivity(intent);
     }
 
+    /*
+    A Function that will start Passenger Dashboard Activity
+     */
     private void Passenger_Dash() {
         Intent intent = new Intent(this, PassengerDash.class);
         startActivity(intent);
     }
 
+    /*
+    A Function that will take care of logging the user in.
+    Function will take advantage of "User_Exists" method to check if there is such user in the list of all accounts
+    If there is, it will check the type of the account that is the user and open respective dashboards
+    Driver_Type will open Driver Dashboard
+    Passenger_Type will open Passenger Dashboard
+     */
     private void Log_In() {
         setContentView(R.layout.activity_start);
 
         final EditText Input_name = findViewById(R.id.Input_Name);
         Button Login_Button = findViewById(R.id.Login_Button);
 
-        Login_Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (User_Exists(All_Accounts, Input_name.getText().toString())) {
-                    Toast.makeText(Start.this, "Account Exists", Toast.LENGTH_LONG).show();
-                    if (type == ACCOUNT_TYPE.PASSENGER) {
-                        Passenger_Dash();
-                    } else {
-                        Driver_Dash();
-                    }
+        Login_Button.setOnClickListener(v -> {
+            if (User_Exists(All_Accounts, Input_name.getText().toString())) {
+                Toast.makeText(Start.this, "Account Exists", Toast.LENGTH_LONG).show();
+                if (type == ACCOUNT_TYPE.PASSENGER) {
+                    Passenger_Dash();
                 } else {
-                    Toast.makeText(Start.this, "Account Doesn't Exist", Toast.LENGTH_LONG).show();
+                    Driver_Dash();
                 }
+            } else {
+                Toast.makeText(Start.this, "Account Doesn't Exist", Toast.LENGTH_LONG).show();
             }
         });
     }
 
+    /*
+    A Function that will create a new user and add them to the list of all the accounts
+     */
     private void Create_New_User() {
 
         Button New_User_Button = findViewById(R.id.New_User_Button);
-        New_User_Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Start.this.setContentView(R.layout.register_new_account);
-                spinner = findViewById(R.id.spinner1);
-                String[] types = {"Driver", "Passenger"};
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                        Start.this, android.R.layout.simple_spinner_item, types);
+        New_User_Button.setOnClickListener(v -> {
+            Start.this.setContentView(R.layout.register_new_account);
+            spinner = findViewById(R.id.spinner1);
+            String[] types = {"Driver", "Passenger"};
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                    Start.this, android.R.layout.simple_spinner_item, types);
 
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                spinner.setAdapter(adapter);
+            spinner.setAdapter(adapter);
 
-                final EditText New_Account_Name = findViewById(R.id.New_Name);
-                final EditText New_Account_Lastname = findViewById(R.id.New_Lastname);
-                final EditText New_Account_Phone = findViewById(R.id.New_Phone);
-                final EditText New_Account_Email = findViewById(R.id.New_Email);
-                Button Register = findViewById(R.id.Register_Button);
+            final EditText New_Account_Name = findViewById(R.id.New_Name);
+            final EditText New_Account_Lastname = findViewById(R.id.New_Lastname);
+            final EditText New_Account_Phone = findViewById(R.id.New_Phone);
+            final EditText New_Account_Email = findViewById(R.id.New_Email);
+            Button Register = findViewById(R.id.Register_Button);
 
-                Register.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+            Register.setOnClickListener(v1 -> {
 
-                        String name = New_Account_Name.getText().toString();
-                        String lastname = New_Account_Lastname.getText().toString();
-                        String phone = New_Account_Phone.getText().toString();
-                        String Email = New_Account_Email.getText().toString();
-                        if (spinner.getSelectedItemPosition() == 0) {
-                            showAddItemDialog(Start.this);
-                            Register_New_Driver(name, lastname, phone, Email, Car_model, 3);
-                        } else {
-                            Register_New_Passenger(name, lastname, phone, Email);
-                        }
-                    }
-                });
-            }
+                String name = New_Account_Name.getText().toString();
+                String lastname = New_Account_Lastname.getText().toString();
+                String phone = New_Account_Phone.getText().toString();
+                String Email = New_Account_Email.getText().toString();
+                if (spinner.getSelectedItemPosition() == 0) {
+                    showAddItemDialog(Start.this);
+                    Register_New_Driver(name, lastname, phone, Email, Car_model, 3);
+                } else {
+                    Register_New_Passenger(name, lastname, phone, Email);
+                }
+            });
         });
 
     }
 
+    /*
+    A Function that will add the Passenger_Type account to the list
+     */
     private void Register_New_Passenger(String name, String lastname, String email, String phone) {
         All_Accounts.add(new PassengerAccount(name, lastname, phone, email, 0,ACCOUNT_TYPE.PASSENGER));
     }
-
+    /*
+    A Function that will add Driver_Type account to the list
+    */
     private void Register_New_Driver(String name, String lastname, String email, String phone, String model, int free_spaces) {
         All_Accounts.add(new DriverAccount(name, lastname, phone, email, model,0, ACCOUNT_TYPE.DRIVER, free_spaces));
     }
 
-
+    /*
+    A Function that will cause a window to pop-up and ask new driver for a car model they have
+    It will then return the String of user Input and save it as the car model
+     */
     private void showAddItemDialog(Context c) {
         final EditText taskEditText = new EditText(c);
         AlertDialog dialog = new AlertDialog.Builder(c)
                 .setTitle("Enter Car Model")
                 .setView(taskEditText)
-                .setPositiveButton("Add", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Car_model = String.valueOf(taskEditText.getText());
-                        Log_In();
-                    }
+                .setPositiveButton("Add", (dialog1, which) -> {
+                    Car_model = String.valueOf(taskEditText.getText());
+                    Log_In();
                 })
                 .setNegativeButton("Cancel", null)
                 .create();
