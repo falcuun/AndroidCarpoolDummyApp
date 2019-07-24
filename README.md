@@ -14,7 +14,7 @@ Android application simulating a Carpool Application by using local memory to st
   -As Driver:  
     -Be able to create your own rides  
     -Be able to modify the rides you already created.  
-    -Be able to remove the rides that are in your list.  
+    -Be able to remove the rides that are in your list.    
     
     
 ```NOTICE:```  
